@@ -1,0 +1,21 @@
+unique_name: dim_security
+object_type: dataset
+label: dim_security
+description: 'Security master: asset class, GICS sector (equities), ticker, region.'
+connection_id: Connection - Wealth Portfolio
+table: dim_security
+columns:
+- name: security_id
+  data_type: long
+- name: ticker
+  data_type: string
+- name: security_name
+  data_type: string
+- name: asset_class
+  data_type: string
+- name: sector
+  data_type: string
+- name: region
+  data_type: string
+- name: expense_ratio
+  data_type: double

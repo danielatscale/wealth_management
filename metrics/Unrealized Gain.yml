@@ -1,0 +1,13 @@
+unique_name: Unrealized Gain
+object_type: metric
+label: Unrealized Gain
+description: Unrealized gain on current positions (~$3.3B book-wide) (NLQ4).
+calculation_method: sum
+dataset: fact_position_snapshot
+column: unrealized_gain
+format: $#,##0.00
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_position_asof_date

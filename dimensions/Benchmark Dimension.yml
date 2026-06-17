@@ -1,0 +1,19 @@
+unique_name: Benchmark Dimension
+object_type: dimension
+label: Benchmark Dimension
+description: Benchmark index, resident on fact_benchmark_return (S&P 500, US Agg Bond, 60/40). Degenerate.
+is_degenerate: true
+hierarchies:
+- unique_name: Benchmark
+  label: Benchmark
+  folder: Benchmark Attributes
+  levels:
+  - unique_name: Benchmark
+level_attributes:
+- unique_name: Benchmark
+  label: Benchmark
+  description: Benchmark index name.
+  dataset: fact_benchmark_return
+  key_columns:
+  - benchmark_id
+  name_column: benchmark_name

@@ -1,0 +1,6 @@
+unique_name: Market Value Prior Year
+object_type: metric_calc
+label: Market Value Prior Year
+description: AUM at the same month one year prior (As Of axis) for year-over-year AUM growth.
+expression: CASE WHEN ISEMPTY([Measures].[Market Value]) THEN NULL ELSE (ParallelPeriod([As Of Date Dimension].[As Of Date Hierarchy].[As Of Year], 1, [As Of Date Dimension].[As Of Date Hierarchy].CurrentMember), [Measures].[Market Value]) END
+format: $#,##0.00

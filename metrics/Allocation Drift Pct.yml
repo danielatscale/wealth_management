@@ -1,0 +1,13 @@
+unique_name: Allocation Drift Pct
+object_type: metric
+label: Allocation Drift Pct
+description: Signed allocation drift (actual minus target) in percent points; slice by Asset Class for over/underweight (NLQ2).
+calculation_method: sum
+dataset: fact_allocation_drift
+column: drift_pct
+format: '#,##0.00'
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_drift_asof_date

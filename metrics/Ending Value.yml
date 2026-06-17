@@ -1,0 +1,13 @@
+unique_name: Ending Value
+object_type: metric
+label: Ending Value
+description: Account ending value for the month (alternate AUM source).
+calculation_method: sum
+dataset: fact_account_performance
+column: ending_value
+format: $#,##0.00
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_perf_asof_date

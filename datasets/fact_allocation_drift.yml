@@ -1,0 +1,72 @@
+unique_name: fact_allocation_drift
+object_type: dataset
+label: fact_allocation_drift
+description: 'Query dataset (Rule 15): allocation drift at (account x asset_class x month). Actual asset-class weight (windowed share-of-total) minus dim_model_target target_pct. Bridges the indirect join account.risk_model -> model_target.model AND security.asset_class -> model_target.asset_class that no star/snowflake FK can express. Joins the Security dimension at the Asset Class rollup level.'
+connection_id: Connection - Wealth Portfolio
+sql: |-
+  SELECT
+    p.snapshot_date AS snapshot_date,
+    p.account_id    AS account_id,
+    s.asset_class   AS asset_class,
+    a.risk_model    AS risk_model,
+    SUM(p.market_value) AS asset_class_mv,
+    SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id) AS account_mv,
+    100.0 * SUM(p.market_value)
+      / SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id) AS actual_pct,
+    COALESCE(MAX(t.target_pct), 0) AS target_pct,
+    100.0 * SUM(p.market_value)
+      / SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id)
+      - COALESCE(MAX(t.target_pct), 0) AS drift_pct,
+    ABS(100.0 * SUM(p.market_value)
+      / SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id)
+      - COALESCE(MAX(t.target_pct), 0)) AS abs_drift_pct
+  FROM fact_position_snapshot p
+    JOIN dim_security s ON p.security_id = s.security_id
+    JOIN dim_account  a ON p.account_id  = a.account_id
+    LEFT JOIN dim_model_target t ON a.risk_model = t.model AND s.asset_class = t.asset_class
+  GROUP BY p.snapshot_date, p.account_id, s.asset_class, a.risk_model
+dialects:
+- dialect: DatabricksSQL
+  sql: |-
+    SELECT
+      p.snapshot_date AS snapshot_date,
+      p.account_id    AS account_id,
+      s.asset_class   AS asset_class,
+      a.risk_model    AS risk_model,
+      SUM(p.market_value) AS asset_class_mv,
+      SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id) AS account_mv,
+      100.0 * SUM(p.market_value)
+        / SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id) AS actual_pct,
+      COALESCE(MAX(t.target_pct), 0) AS target_pct,
+      100.0 * SUM(p.market_value)
+        / SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id)
+        - COALESCE(MAX(t.target_pct), 0) AS drift_pct,
+      ABS(100.0 * SUM(p.market_value)
+        / SUM(SUM(p.market_value)) OVER (PARTITION BY p.snapshot_date, p.account_id)
+        - COALESCE(MAX(t.target_pct), 0)) AS abs_drift_pct
+    FROM fact_position_snapshot p
+      JOIN dim_security s ON p.security_id = s.security_id
+      JOIN dim_account  a ON p.account_id  = a.account_id
+      LEFT JOIN dim_model_target t ON a.risk_model = t.model AND s.asset_class = t.asset_class
+    GROUP BY p.snapshot_date, p.account_id, s.asset_class, a.risk_model
+columns:
+- name: snapshot_date
+  data_type: date
+- name: account_id
+  data_type: long
+- name: asset_class
+  data_type: string
+- name: risk_model
+  data_type: string
+- name: asset_class_mv
+  data_type: decimal(18,2)
+- name: account_mv
+  data_type: decimal(18,2)
+- name: actual_pct
+  data_type: double
+- name: target_pct
+  data_type: double
+- name: drift_pct
+  data_type: double
+- name: abs_drift_pct
+  data_type: double

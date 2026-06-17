@@ -1,0 +1,13 @@
+unique_name: Absolute Allocation Drift Pct
+object_type: metric
+label: Absolute Allocation Drift Pct
+description: Absolute allocation drift in percent points; group by Account for a 'drifted most' ranking score (NLQ2).
+calculation_method: sum
+dataset: fact_allocation_drift
+column: abs_drift_pct
+format: '#,##0.00'
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_drift_asof_date

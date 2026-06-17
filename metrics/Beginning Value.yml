@@ -1,0 +1,13 @@
+unique_name: Beginning Value
+object_type: metric
+label: Beginning Value
+description: Account beginning value for the month.
+calculation_method: sum
+dataset: fact_account_performance
+column: beginning_value
+format: $#,##0.00
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_perf_asof_date

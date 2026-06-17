@@ -1,0 +1,101 @@
+# data_profile.yaml — wealth_portfolio_nlq
+# Column-level profile (Tabular Data Profile style). Types are the Databricks/Delta
+# target types. Generated 2026-06-17, seed 42.
+dataset: wealth_portfolio_nlq
+tables:
+  - name: dim_date
+    row_count: 36
+    columns:
+      - {name: date_id, type: DATE, nulls: 0, distinct: 36, min: 2023-07-31, max: 2026-06-30}
+      - {name: year_num, type: BIGINT, nulls: 0, distinct: 4, min: 2023, max: 2026}
+      - {name: month_num, type: BIGINT, nulls: 0, distinct: 12, min: 1, max: 12}
+      - {name: month_name, type: STRING, nulls: 0, distinct: 12}
+      - {name: year_month, type: STRING, nulls: 0, distinct: 36}
+      - {name: quarter_num, type: BIGINT, nulls: 0, distinct: 4, min: 1, max: 4}
+      - {name: quarter_name, type: STRING, nulls: 0, distinct: 12}
+      - {name: is_quarter_end, type: BOOLEAN, nulls: 0, distinct: 2}
+      - {name: is_year_end, type: BOOLEAN, nulls: 0, distinct: 2}
+  - name: dim_advisor
+    row_count: 60
+    columns:
+      - {name: advisor_id, type: BIGINT, nulls: 0, distinct: 60, min: 1, max: 60}
+      - {name: advisor_name, type: STRING, nulls: 0, distinct: 58}
+      - {name: office_region, type: STRING, nulls: 0, distinct: 5}
+      - {name: tenure_years, type: BIGINT, nulls: 0, distinct: 24, min: 2, max: 27}
+      - {name: is_senior, type: BOOLEAN, nulls: 0, distinct: 2}
+  - name: dim_household
+    row_count: 1500
+    columns:
+      - {name: household_id, type: BIGINT, nulls: 0, distinct: 1500, min: 1, max: 1500}
+      - {name: household_name, type: STRING, nulls: 0, distinct: 144}
+      - {name: segment, type: STRING, nulls: 0, distinct: 3}
+      - {name: region, type: STRING, nulls: 0, distinct: 5}
+      - {name: advisor_id, type: BIGINT, nulls: 0, distinct: 60, min: 1, max: 60}
+      - {name: acquisition_date, type: DATE, nulls: 0, distinct: 1326, min: 2008-07-03, max: 2026-03-08}
+  - name: dim_account
+    row_count: 3315
+    columns:
+      - {name: account_id, type: BIGINT, nulls: 0, distinct: 3315, min: 1, max: 3315}
+      - {name: household_id, type: BIGINT, nulls: 0, distinct: 1500, min: 1, max: 1500}
+      - {name: account_type, type: STRING, nulls: 0, distinct: 5}
+      - {name: registration, type: STRING, nulls: 0, distinct: 4}
+      - {name: risk_model, type: STRING, nulls: 0, distinct: 4}
+      - {name: open_date, type: DATE, nulls: 0, distinct: 1326, min: 2008-07-03, max: 2026-03-08}
+  - name: dim_security
+    row_count: 360
+    columns:
+      - {name: security_id, type: BIGINT, nulls: 0, distinct: 360, min: 1, max: 360}
+      - {name: ticker, type: STRING, nulls: 0, distinct: 360}
+      - {name: security_name, type: STRING, nulls: 0, distinct: 360}
+      - {name: asset_class, type: STRING, nulls: 0, distinct: 4}
+      - {name: sector, type: STRING, nulls: 0, distinct: 10}
+      - {name: region, type: STRING, nulls: 0, distinct: 2}
+      - {name: expense_ratio, type: DOUBLE, nulls: 0, distinct: 67, min: 0.0, max: 1.08}
+  - name: dim_model_target
+    row_count: 16
+    columns:
+      - {name: model, type: STRING, nulls: 0, distinct: 4}
+      - {name: asset_class, type: STRING, nulls: 0, distinct: 4}
+      - {name: target_pct, type: DOUBLE, nulls: 0, distinct: 11, min: 2.0, max: 85.0}
+  - name: fact_position_snapshot
+    row_count: 2134728
+    columns:
+      - {name: position_id, type: BIGINT, nulls: 0, distinct: 2134728, min: 1, max: 2134728}
+      - {name: snapshot_date, type: DATE, nulls: 0, distinct: 36, min: 2023-07-31, max: 2026-06-30}
+      - {name: account_id, type: BIGINT, nulls: 0, distinct: 3315, min: 1, max: 3315}
+      - {name: security_id, type: BIGINT, nulls: 0, distinct: 360, min: 1, max: 360}
+      - {name: quantity, type: DECIMAL(18,2), nulls: 0, distinct: 48202, min: 0.49, max: 1101122.09}
+      - {name: price, type: DECIMAL(18,2), nulls: 0, distinct: 10718, min: 17.31, max: 494.59}
+      - {name: market_value, type: DECIMAL(18,2), nulls: 0, distinct: 2004163, min: 123.42, max: 40571542.20}
+      - {name: cost_basis, type: DECIMAL(18,2), nulls: 0, distinct: 51697, min: 123.42, max: 39984769.24}
+      - {name: unrealized_gain, type: DECIMAL(18,2), nulls: 0, distinct: 1381667, min: -2036039.43, max: 5262147.42}
+  - name: fact_account_performance
+    row_count: 119340
+    columns:
+      - {name: perf_id, type: BIGINT, nulls: 0, distinct: 119340, min: 1, max: 119340}
+      - {name: snapshot_date, type: DATE, nulls: 0, distinct: 36, min: 2023-07-31, max: 2026-06-30}
+      - {name: account_id, type: BIGINT, nulls: 0, distinct: 3315, min: 1, max: 3315}
+      - {name: beginning_value, type: DECIMAL(18,2), nulls: 0, distinct: 116004, min: 108439.33, max: 111958768.05}
+      - {name: net_flow, type: DECIMAL(18,2), nulls: 0, distinct: 1, min: 0.00, max: 0.00}
+      - {name: ending_value, type: DECIMAL(18,2), nulls: 0, distinct: 119319, min: 108439.33, max: 114817092.67}
+      - {name: monthly_return, type: DOUBLE, nulls: 0, distinct: 53480, min: -7.0756, max: 6.4447}
+  - name: fact_benchmark_return
+    row_count: 108
+    columns:
+      - {name: benchmark_id, type: STRING, nulls: 0, distinct: 3}
+      - {name: benchmark_name, type: STRING, nulls: 0, distinct: 3}
+      - {name: snapshot_date, type: DATE, nulls: 0, distinct: 36, min: 2023-07-31, max: 2026-06-30}
+      - {name: index_level, type: DECIMAL(18,2), nulls: 0, distinct: 107, min: 97.45, max: 5583.79}
+      - {name: monthly_return, type: DOUBLE, nulls: 0, distinct: 108, min: -5.6286, max: 4.3715}
+  - name: fact_realized_gain
+    row_count: 3000
+    columns:
+      - {name: realized_id, type: BIGINT, nulls: 0, distinct: 3000, min: 1, max: 3000}
+      - {name: account_id, type: BIGINT, nulls: 0, distinct: 1980, min: 4, max: 3315}
+      - {name: security_id, type: BIGINT, nulls: 0, distinct: 360, min: 1, max: 360}
+      - {name: sell_date, type: DATE, nulls: 0, distinct: 7, min: 2025-12-18, max: 2026-06-30}
+      - {name: quantity, type: DECIMAL(18,2), nulls: 0, distinct: 2877, min: 5.04, max: 399.81}
+      - {name: proceeds, type: DECIMAL(18,2), nulls: 0, distinct: 3000, min: 163.07, max: 163125.89}
+      - {name: cost_basis, type: DECIMAL(18,2), nulls: 0, distinct: 2999, min: 181.22, max: 193091.09}
+      - {name: realized_gain, type: DECIMAL(18,2), nulls: 0, distinct: 2998, min: -29965.20, max: 37129.40}
+      - {name: term, type: STRING, nulls: 0, distinct: 2}

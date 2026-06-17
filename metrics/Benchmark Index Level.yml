@@ -1,0 +1,13 @@
+unique_name: Benchmark Index Level
+object_type: metric
+label: Benchmark Index Level
+description: Benchmark index level at the snapshot (filter to a single benchmark). Semi-additive over date.
+calculation_method: sum
+dataset: fact_benchmark_return
+column: index_level
+format: '#,##0.00'
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_benchmark_asof_date

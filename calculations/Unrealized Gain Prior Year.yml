@@ -1,0 +1,6 @@
+unique_name: Unrealized Gain Prior Year
+object_type: metric_calc
+label: Unrealized Gain Prior Year
+description: Unrealized gain at the same month one year prior (As Of axis); ParallelPeriod, not Lag (Rule 13).
+expression: CASE WHEN ISEMPTY([Measures].[Unrealized Gain]) THEN NULL ELSE (ParallelPeriod([As Of Date Dimension].[As Of Date Hierarchy].[As Of Year], 1, [As Of Date Dimension].[As Of Date Hierarchy].CurrentMember), [Measures].[Unrealized Gain]) END
+format: $#,##0.00

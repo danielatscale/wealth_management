@@ -1,0 +1,54 @@
+unique_name: Security Dimension
+object_type: dimension
+label: Security Dimension
+description: 'Holdings universe: Asset Class > Sector > Security. Sector is composite-keyed by (asset_class, sector) so the ''-'' sector rolls up correctly under each asset class.'
+type: standard
+hierarchies:
+- unique_name: Security Hierarchy
+  label: Security Hierarchy
+  description: Asset Class > Sector > Security.
+  filter_empty: 'yes'
+  folder: Security Attributes
+  levels:
+  - unique_name: Asset Class
+  - unique_name: Sector
+  - unique_name: Security
+    secondary_attributes:
+    - unique_name: Ticker
+      label: Ticker
+      dataset: dim_security
+      name_column: ticker
+      key_columns:
+      - ticker
+      description: Stock/fund ticker symbol.
+    - unique_name: Security Region
+      label: Security Region
+      dataset: dim_security
+      name_column: region
+      key_columns:
+      - region
+      description: US / International.
+level_attributes:
+- unique_name: Asset Class
+  label: Asset Class
+  description: Equity / Fixed Income / Cash / Alternative (NLQ3). Join grain for allocation drift.
+  dataset: dim_security
+  key_columns:
+  - asset_class
+  name_column: asset_class
+- unique_name: Sector
+  label: Sector
+  description: GICS sector for equities ('-' otherwise), qualified by asset class.
+  dataset: dim_security
+  key_columns:
+  - asset_class
+  - sector
+  name_column: sector
+- unique_name: Security
+  label: Security
+  description: Individual security (leaf).
+  dataset: dim_security
+  is_unique_key: true
+  key_columns:
+  - security_id
+  name_column: security_name

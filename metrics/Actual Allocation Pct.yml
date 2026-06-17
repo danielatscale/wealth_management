@@ -1,0 +1,13 @@
+unique_name: Actual Allocation Pct
+object_type: metric
+label: Actual Allocation Pct
+description: Actual asset-class weight in percent points (account share-of-total). Meaningful per account x asset class.
+calculation_method: sum
+dataset: fact_allocation_drift
+column: actual_pct
+format: '#,##0.00'
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_drift_asof_date

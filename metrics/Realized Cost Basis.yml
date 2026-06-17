@@ -1,0 +1,9 @@
+unique_name: Realized Cost Basis
+object_type: metric
+label: Realized Cost Basis
+description: Cost basis of realized sell lots.
+calculation_method: sum
+dataset: fact_realized_gain
+column: cost_basis
+format: $#,##0.00
+unrelated_dimensions_handling: repeat

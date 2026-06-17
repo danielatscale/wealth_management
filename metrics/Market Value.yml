@@ -1,0 +1,13 @@
+unique_name: Market Value
+object_type: metric
+label: Market Value
+description: Total portfolio market value / AUM at the snapshot. Slice by Household/Segment for AUM (NLQ5).
+calculation_method: sum
+dataset: fact_position_snapshot
+column: market_value
+format: $#,##0.00
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_position_asof_date

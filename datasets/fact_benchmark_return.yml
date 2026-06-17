@@ -1,0 +1,17 @@
+unique_name: fact_benchmark_return
+object_type: dataset
+label: fact_benchmark_return
+description: 'Benchmark returns: one row per benchmark x month-end (S&P 500, US Agg Bond, 60/40). benchmark_id/name are degenerate.'
+connection_id: Connection - Wealth Portfolio
+table: fact_benchmark_return
+columns:
+- name: benchmark_id
+  data_type: string
+- name: benchmark_name
+  data_type: string
+- name: snapshot_date
+  data_type: date
+- name: index_level
+  data_type: decimal(18,2)
+- name: monthly_return
+  data_type: double

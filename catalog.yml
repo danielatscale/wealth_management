@@ -1,0 +1,7 @@
+unique_name: wealth_portfolio_nlq_catalog
+object_type: catalog
+label: Wealth Portfolio NLQ
+description: Client Portfolio Performance & Allocation catalog for the wealth_portfolio_nlq model — portfolio performance vs benchmark, allocation drift vs target, asset/sector exposure, realized vs unrealized gains, and household AUM for a wirehouse advisory book.
+version: 1.6
+aggressive_agg_promotion: false
+build_speculative_aggs: false

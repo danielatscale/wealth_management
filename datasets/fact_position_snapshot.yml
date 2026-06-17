@@ -1,0 +1,25 @@
+unique_name: fact_position_snapshot
+object_type: dataset
+label: fact_position_snapshot
+description: 'Core fact: one row per account x security x month-end. Snapshot (semi-additive over date).'
+connection_id: Connection - Wealth Portfolio
+table: fact_position_snapshot
+columns:
+- name: position_id
+  data_type: long
+- name: snapshot_date
+  data_type: date
+- name: account_id
+  data_type: long
+- name: security_id
+  data_type: long
+- name: quantity
+  data_type: decimal(18,2)
+- name: price
+  data_type: decimal(18,2)
+- name: market_value
+  data_type: decimal(18,2)
+- name: cost_basis
+  data_type: decimal(18,2)
+- name: unrealized_gain
+  data_type: decimal(18,2)

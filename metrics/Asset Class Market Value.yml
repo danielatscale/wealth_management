@@ -1,0 +1,13 @@
+unique_name: Asset Class Market Value
+object_type: metric
+label: Asset Class Market Value
+description: Market value held in an asset class for an account at the snapshot (exposure $).
+calculation_method: sum
+dataset: fact_allocation_drift
+column: asset_class_mv
+format: $#,##0.00
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_drift_asof_date

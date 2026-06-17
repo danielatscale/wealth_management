@@ -1,0 +1,9 @@
+unique_name: Benchmark Monthly Return
+object_type: metric
+label: Benchmark Monthly Return
+description: 'Average benchmark monthly return in percent points (NLQ1: portfolio vs S&P 500).'
+calculation_method: average
+dataset: fact_benchmark_return
+column: monthly_return
+format: '#,##0.00'
+unrelated_dimensions_handling: repeat

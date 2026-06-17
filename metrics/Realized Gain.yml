@@ -1,0 +1,9 @@
+unique_name: Realized Gain
+object_type: metric
+label: Realized Gain
+description: Realized gain/loss on sell lots (negative = loss; Dec-2025 TLH batch is a net loss) (NLQ4).
+calculation_method: sum
+dataset: fact_realized_gain
+column: realized_gain
+format: $#,##0.00
+unrelated_dimensions_handling: repeat

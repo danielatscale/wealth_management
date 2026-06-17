@@ -1,0 +1,114 @@
+unique_name: Account Dimension
+object_type: dimension
+label: Account Dimension
+description: 'The advisory book: Advisor > Household > Account, snowflaked across dim_advisor, dim_household, dim_account (Rule 5).'
+type: standard
+hierarchies:
+- unique_name: Book Hierarchy
+  label: Book Hierarchy
+  description: Advisor rolls up households which roll up accounts.
+  filter_empty: 'yes'
+  folder: Book Attributes
+  levels:
+  - unique_name: Advisor
+    secondary_attributes:
+    - unique_name: Office Region
+      label: Office Region
+      dataset: dim_advisor
+      name_column: office_region
+      key_columns:
+      - office_region
+      description: Advisor office region.
+    - unique_name: Advisor Seniority
+      label: Advisor Seniority
+      dataset: dim_advisor
+      name_column: is_senior
+      key_columns:
+      - is_senior
+      description: Whether the advisor is senior.
+    - unique_name: Advisor Tenure Years
+      label: Advisor Tenure Years
+      dataset: dim_advisor
+      name_column: tenure_years
+      key_columns:
+      - tenure_years
+      description: Advisor tenure in years.
+  - unique_name: Household
+    secondary_attributes:
+    - unique_name: Segment
+      label: Segment
+      dataset: dim_household
+      name_column: segment
+      key_columns:
+      - segment
+      description: 'Wealth segment: Mass Affluent / HNW / UHNW (NLQ5).'
+    - unique_name: Household Region
+      label: Household Region
+      dataset: dim_household
+      name_column: region
+      key_columns:
+      - region
+      description: Household region.
+  - unique_name: Account
+    secondary_attributes:
+    - unique_name: Account Type
+      label: Account Type
+      dataset: dim_account
+      name_column: account_type
+      key_columns:
+      - account_type
+      description: Brokerage / IRA / 401(k) Rollover / Trust.
+    - unique_name: Registration
+      label: Registration
+      dataset: dim_account
+      name_column: registration
+      key_columns:
+      - registration
+      description: Account registration.
+    - unique_name: Risk Model
+      label: Risk Model
+      dataset: dim_account
+      name_column: risk_model
+      key_columns:
+      - risk_model
+      description: 'Target risk model: Conservative/Moderate/Growth/Aggressive.'
+level_attributes:
+- unique_name: Advisor
+  label: Advisor
+  description: Financial advisor (top of the book).
+  dataset: dim_advisor
+  is_unique_key: true
+  key_columns:
+  - advisor_id
+  name_column: advisor_name
+- unique_name: Household
+  label: Household
+  description: Client household.
+  dataset: dim_household
+  is_unique_key: true
+  key_columns:
+  - household_id
+  name_column: household_name
+- unique_name: Account
+  label: Account
+  description: Individual account (leaf; fact join grain). Account number is the label.
+  dataset: dim_account
+  is_unique_key: true
+  key_columns:
+  - account_id
+  name_column: account_id
+relationships:
+- from:
+    dataset: dim_account
+    join_columns:
+    - household_id
+  to:
+    level: Household
+  type: snowflake
+- from:
+    dataset: dim_household
+    join_columns:
+    - advisor_id
+  to:
+    level: Advisor
+  type: snowflake

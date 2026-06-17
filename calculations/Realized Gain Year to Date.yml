@@ -1,0 +1,6 @@
+unique_name: Realized Gain Year to Date
+object_type: metric_calc
+label: Realized Gain Year to Date
+description: Realized gain accumulated year-to-date on the Sold (sell) date axis (NLQ4).
+expression: CASE WHEN ISEMPTY([Measures].[Realized Gain]) THEN NULL ELSE Aggregate(PeriodsToDate([Sold Date Dimension].[Sold Date Hierarchy].[Sold Year], [Sold Date Dimension].[Sold Date Hierarchy].CurrentMember), [Measures].[Realized Gain]) END
+format: $#,##0.00

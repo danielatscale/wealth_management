@@ -1,0 +1,19 @@
+unique_name: Term Dimension
+object_type: dimension
+label: Term Dimension
+description: Holding-period term (Short / Long) for realized gains, resident on fact_realized_gain. Degenerate.
+is_degenerate: true
+hierarchies:
+- unique_name: Term
+  label: Term
+  folder: Realized Gain Attributes
+  levels:
+  - unique_name: Term
+level_attributes:
+- unique_name: Term
+  label: Term
+  description: Short-term vs long-term realized gain.
+  dataset: fact_realized_gain
+  key_columns:
+  - term
+  name_column: term

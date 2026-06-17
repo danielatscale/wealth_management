@@ -1,0 +1,9 @@
+unique_name: Realized Loss
+object_type: metric
+label: Realized Loss
+description: Realized losses only (negative amounts; tax-loss-harvest view).
+calculation_method: sum
+dataset: fact_realized_gain
+column: realized_loss
+format: $#,##0.00
+unrelated_dimensions_handling: repeat

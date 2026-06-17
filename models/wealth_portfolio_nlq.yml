@@ -1,0 +1,153 @@
+unique_name: wealth_portfolio_nlq
+object_type: model
+label: Wealth Portfolio NLQ
+visible: true
+description: 'Client Portfolio Performance & Allocation for a Merrill Lynch-style wirehouse advisory book. Answers: performance vs S&P 500, allocation drift vs target, asset/sector exposure, realized vs unrealized gains, household AUM by advisor.'
+relationships:
+- unique_name: rel_position_asof_date
+  from:
+    dataset: fact_position_snapshot
+    join_columns:
+    - snapshot_date
+  to:
+    dimension: Date Dimension
+    level: Month
+  role_play: As Of {0}
+- unique_name: rel_position_account
+  from:
+    dataset: fact_position_snapshot
+    join_columns:
+    - account_id
+  to:
+    dimension: Account Dimension
+    level: Account
+- unique_name: rel_position_security
+  from:
+    dataset: fact_position_snapshot
+    join_columns:
+    - security_id
+  to:
+    dimension: Security Dimension
+    level: Security
+- unique_name: rel_perf_asof_date
+  from:
+    dataset: fact_account_performance
+    join_columns:
+    - snapshot_date
+  to:
+    dimension: Date Dimension
+    level: Month
+  role_play: As Of {0}
+- unique_name: rel_perf_account
+  from:
+    dataset: fact_account_performance
+    join_columns:
+    - account_id
+  to:
+    dimension: Account Dimension
+    level: Account
+- unique_name: rel_benchmark_asof_date
+  from:
+    dataset: fact_benchmark_return
+    join_columns:
+    - snapshot_date
+  to:
+    dimension: Date Dimension
+    level: Month
+  role_play: As Of {0}
+- unique_name: rel_realized_sold_date
+  from:
+    dataset: fact_realized_gain
+    join_columns:
+    - sell_date
+  to:
+    dimension: Date Dimension
+    level: Month
+  role_play: Sold {0}
+- unique_name: rel_realized_account
+  from:
+    dataset: fact_realized_gain
+    join_columns:
+    - account_id
+  to:
+    dimension: Account Dimension
+    level: Account
+- unique_name: rel_realized_security
+  from:
+    dataset: fact_realized_gain
+    join_columns:
+    - security_id
+  to:
+    dimension: Security Dimension
+    level: Security
+- unique_name: rel_drift_asof_date
+  from:
+    dataset: fact_allocation_drift
+    join_columns:
+    - snapshot_date
+  to:
+    dimension: Date Dimension
+    level: Month
+  role_play: As Of {0}
+- unique_name: rel_drift_account
+  from:
+    dataset: fact_allocation_drift
+    join_columns:
+    - account_id
+  to:
+    dimension: Account Dimension
+    level: Account
+- unique_name: rel_drift_assetclass
+  from:
+    dataset: fact_allocation_drift
+    join_columns:
+    - asset_class
+  to:
+    dimension: Security Dimension
+    level: Asset Class
+dimensions:
+- Benchmark Dimension
+- Term Dimension
+metrics:
+- unique_name: Market Value
+  folder: Portfolio
+- unique_name: Cost Basis
+  folder: Portfolio
+- unique_name: Unrealized Gain
+  folder: Gains
+- unique_name: Ending Value
+  folder: Portfolio
+- unique_name: Beginning Value
+  folder: Portfolio
+- unique_name: Monthly Return
+  folder: Performance
+- unique_name: Benchmark Index Level
+  folder: Benchmark
+- unique_name: Benchmark Monthly Return
+  folder: Benchmark
+- unique_name: Realized Gain
+  folder: Gains
+- unique_name: Realized Proceeds
+  folder: Gains
+- unique_name: Realized Cost Basis
+  folder: Gains
+- unique_name: Realized Loss
+  folder: Gains
+- unique_name: Realized Profit
+  folder: Gains
+- unique_name: Asset Class Market Value
+  folder: Allocation
+- unique_name: Actual Allocation Pct
+  folder: Allocation
+- unique_name: Target Allocation Pct
+  folder: Allocation
+- unique_name: Allocation Drift Pct
+  folder: Allocation
+- unique_name: Absolute Allocation Drift Pct
+  folder: Allocation
+- unique_name: Realized Gain Year to Date
+  folder: Time Intelligence
+- unique_name: Unrealized Gain Prior Year
+  folder: Time Intelligence
+- unique_name: Market Value Prior Year
+  folder: Time Intelligence

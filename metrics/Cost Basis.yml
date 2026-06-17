@@ -1,0 +1,13 @@
+unique_name: Cost Basis
+object_type: metric
+label: Cost Basis
+description: Total cost basis of held positions at the snapshot.
+calculation_method: sum
+dataset: fact_position_snapshot
+column: cost_basis
+format: $#,##0.00
+unrelated_dimensions_handling: repeat
+semi_additive:
+  position: last
+  relationships:
+  - rel_position_asof_date

@@ -1,0 +1,97 @@
+erDiagram
+    dim_advisor ||--o{ dim_household : advises
+    dim_household ||--o{ dim_account : owns
+    dim_account ||--o{ fact_position_snapshot : holds
+    dim_security ||--o{ fact_position_snapshot : "held as"
+    dim_date ||--o{ fact_position_snapshot : "as of"
+    dim_account ||--o{ fact_account_performance : "performance of"
+    dim_date ||--o{ fact_account_performance : "as of"
+    dim_account ||--o{ fact_realized_gain : "realized in"
+    dim_security ||--o{ fact_realized_gain : "sold from"
+    dim_date ||--o{ fact_benchmark_return : "as of"
+    dim_account }o--|| dim_model_target : "target model"
+
+    dim_date {
+        date date_id PK
+        bigint year_num
+        bigint month_num
+        string year_month
+        bigint quarter_num
+        boolean is_quarter_end
+        boolean is_year_end
+    }
+    dim_advisor {
+        bigint advisor_id PK
+        string advisor_name
+        string office_region
+        bigint tenure_years
+        boolean is_senior
+    }
+    dim_household {
+        bigint household_id PK
+        string household_name
+        string segment
+        string region
+        bigint advisor_id FK
+        date acquisition_date
+    }
+    dim_account {
+        bigint account_id PK
+        bigint household_id FK
+        string account_type
+        string registration
+        string risk_model
+        date open_date
+    }
+    dim_security {
+        bigint security_id PK
+        string ticker
+        string security_name
+        string asset_class
+        string sector
+        string region
+        double expense_ratio
+    }
+    dim_model_target {
+        string model PK
+        string asset_class PK
+        double target_pct
+    }
+    fact_position_snapshot {
+        bigint position_id PK
+        date snapshot_date FK
+        bigint account_id FK
+        bigint security_id FK
+        decimal quantity
+        decimal price
+        decimal market_value
+        decimal cost_basis
+        decimal unrealized_gain
+    }
+    fact_account_performance {
+        bigint perf_id PK
+        date snapshot_date FK
+        bigint account_id FK
+        decimal beginning_value
+        decimal net_flow
+        decimal ending_value
+        double monthly_return
+    }
+    fact_benchmark_return {
+        string benchmark_id PK
+        string benchmark_name
+        date snapshot_date PK
+        decimal index_level
+        double monthly_return
+    }
+    fact_realized_gain {
+        bigint realized_id PK
+        bigint account_id FK
+        bigint security_id FK
+        date sell_date
+        decimal quantity
+        decimal proceeds
+        decimal cost_basis
+        decimal realized_gain
+        string term
+    }
