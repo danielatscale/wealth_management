@@ -76,6 +76,9 @@ so it does not replace any Databricks deployment of `wealth_portfolio_nlq_catalo
   `Market Value Change Pct vs Prior Period` (prior quarter when grouped by As Of Quarter; uses
   `PrevMember` on the As Of hierarchy) and `Cash Share of Market Value` (Cash asset class over all
   asset classes).
+- **Sold date join:** `fact_realized_gain` joins the Sold date on `SELL_MONTH_END` (`LAST_DAY(SELL_DATE)`), because
+  the date dimension holds month ends only. Joining on the raw `SELL_DATE` dropped the 1,800 tax-loss-harvest sales
+  of 2025-12-18 (-$10.68M) from any query sliced by Sold date.
 - **Not answerable from this data:** households spanning more than one advisor (each household
   has exactly one advisor), net new assets (`net_flow` is 0 in every row), fee-based ROA, advisor
   attrition and branch-level security (no fee, hire/termination or branch data).

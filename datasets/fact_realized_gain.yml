@@ -13,6 +13,12 @@ columns:
   data_type: long
 - name: SELL_DATE
   data_type: date
+- name: SELL_MONTH_END
+  data_type: date
+  sql: LAST_DAY(SELL_DATE)
+  dialects:
+  - dialect: DatabricksSQL
+    sql: last_day(sell_date)
 - name: QUANTITY
   data_type: decimal(18,2)
 - name: PROCEEDS

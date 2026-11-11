@@ -59,7 +59,7 @@ relationships:
   from:
     dataset: fact_realized_gain
     join_columns:
-    - SELL_DATE
+    - SELL_MONTH_END
   to:
     dimension: Date Dimension
     level: Month
