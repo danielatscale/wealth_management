@@ -11,7 +11,8 @@ prompt, no model. Never build on it directly; cut a branch per run so the templa
    git switch -c cortex-<yyyymmdd-hhmm>        # e.g. cortex-20261113-1000
    cortex                                      # connection: demo; check /mcp shows atscale-demo-poc connected
    ```
-2. **Start the build:** paste everything below the line into Cortex. A build takes several minutes.
+2. **Start the build:** paste the **Demo prompt** below into Cortex. A build takes several minutes. If a rehearsal shows
+   Cortex needs more guidance, use the **Full prompt** (or add the lines it needed to the demo prompt).
 3. **While it builds:** demo the existing model (`wealth_portfolio_nlq_snowflake`) and the Snowflake Intelligence
    agent `Wealth Portfolio (AtScale)`.
 4. **Back to Cortex:** show the files it wrote, its `sml-cli validate .` run and its commit and push.
@@ -21,10 +22,42 @@ prompt, no model. Never build on it directly; cut a branch per run so the templa
    sml-cli atscale-deploy . --catalog-name=wealth_portfolio_cortex --catalog-label="Wealth Portfolio (Cortex)"
    ```
    Each run deploys over the same catalog `wealth_portfolio_cortex`, so the existing model is never touched.
-6. **Test:** ask Cortex the six questions below against the new catalog through the `atscale-demo-poc` tools
+6. **Test:** ask Cortex the questions in the prompt against the new catalog through the `atscale-demo-poc` tools
    (`list_models`, `run_query`), and compare with the existing model's answers.
 7. **After the demo:** delete the run branch if you don't want to keep it
    (`git push origin --delete cortex-<yyyymmdd-hhmm>`).
+
+## Demo prompt (short, reads well on screen)
+
+The detail lives in `catalog.yml`, which Cortex reads; the prompt stays a business request, and nothing in it
+tells Cortex how to model, so what it gets right comes from Horizon.
+
+```
+Build an AtScale semantic model for our wealth management data in Snowflake,
+SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.
+
+Use only the business context already in Snowflake Horizon: the table and column
+comments, the keys, and the glossary in SE_DEMO_LIBRARY.METADATA. catalog.yml in
+this folder says where everything is and which AtScale connection to use.
+
+Use the AtScale MCP tools to design and write the model files here, and validate
+them with sml-cli until they're clean.
+
+The model needs to answer questions like:
+- What was AUM by advisor at the end of Q2 2026, and how did it change vs Q1?
+- What share of client assets sat in cash at each of the last 13 month ends?
+- Which households have the largest AUM, and who is their advisor?
+- What are realized vs unrealized gains year to date?
+- Which accounts are most underweight in fixed income vs target?
+
+When it validates, commit and push this branch. Don't deploy. Then give me a short
+summary of what you built and which Horizon definitions you used.
+```
+
+Lines to add if a rehearsal shows Cortex needs them: "Call create_sml_model with confirmed: true, return_only: true
+and write the YAML it returns yourself." and "Don't ask me questions; make reasonable choices and say what you chose."
+
+## Full prompt (rehearsal / fallback)
 
 ---
 
