@@ -1,11 +1,34 @@
-# Build prompt for Snowflake Cortex Code
+# Live build with Snowflake Cortex Code
 
-Start Cortex Code in this folder (branch `cortex_build` of `danielatscale/wealth_management`) with the Snowflake
-connection `demo` and the MCP server `atscale-demo-poc` connected, then paste everything below the line.
+Branch `cortex_build` is the clean starting point: only `catalog.yml` (Horizon as the only context) and this
+prompt, no model. Never build on it directly; cut a branch per run so the template stays clean.
+
+## Run of show
+
+1. **Before the build** (in a terminal, in `~/workspace/atscale/wealth_management`):
+   ```
+   git fetch origin && git switch cortex_build && git pull
+   git switch -c cortex-<yyyymmdd-hhmm>        # e.g. cortex-20261113-1000
+   cortex                                      # connection: demo; check /mcp shows atscale-demo-poc connected
+   ```
+2. **Start the build:** paste everything below the line into Cortex. A build takes several minutes.
+3. **While it builds:** demo the existing model (`wealth_portfolio_nlq_snowflake`) and the Snowflake Intelligence
+   agent `Wealth Portfolio (AtScale)`.
+4. **Back to Cortex:** show the files it wrote, its `sml-cli validate .` run and its commit and push.
+5. **Publish** (with `.env` holding `ATSCALE_API_URL=https://demo.poc.atscale-se-demo.com/api` and a demo.poc token):
+   ```
+   set -a && . ./.env && set +a
+   sml-cli atscale-deploy . --catalog-name=wealth_portfolio_cortex --catalog-label="Wealth Portfolio (Cortex)"
+   ```
+   Each run deploys over the same catalog `wealth_portfolio_cortex`, so the existing model is never touched.
+6. **Test:** ask Cortex the six questions below against the new catalog through the `atscale-demo-poc` tools
+   (`list_models`, `run_query`), and compare with the existing model's answers.
+7. **After the demo:** delete the run branch if you don't want to keep it
+   (`git push origin --delete cortex-<yyyymmdd-hhmm>`).
 
 ---
 
-You're on branch `cortex_build` of the SML repo in the current folder. Read `catalog.yml` and follow its
+You're on a fresh branch of the SML repo in the current folder. Read `catalog.yml` and follow its
 `ai_context`: Snowflake Horizon for `SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ` is the only business context, and the
 rows come through the AtScale connection `Snowflake Partner`.
 
@@ -43,8 +66,8 @@ The model must answer these questions:
 5. What is our exposure to equities by sector today?
 6. Which accounts are most underweight in fixed income vs target?
 
-Validate with `sml-cli validate .` until it reports no errors. Commit to this branch and push it
-(`git push -u origin cortex_build`). Do not deploy.
+Validate with `sml-cli validate .` until it reports no errors. Commit to the current branch and push it
+(`git push -u origin HEAD`). Do not deploy, and do not switch or create branches.
 
 This is an unattended run: don't ask questions; make the reasonable choice and say what you chose. When done,
 give a short report: what you built (datasets, dimensions, metrics, calculations, the model name), how each of the
