@@ -62,7 +62,7 @@ The `snowflake` branch runs the same model on Snowflake, for the Morgan Stanley 
 - **Data:** Snowflake `SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ` (account CK01391), loaded from the
   bundle with its Snowflake loader (Drive: `wealth_portfolio_nlq_snowflake_loader.zip`). Tables were
   created unquoted, so table and column names are UPPERCASE.
-- **Connection:** `as_connection: Snowflake Partner`, database `SE_DEMO_LIBRARY`, schema
+- **Connection:** `as_connection: SnowflakePartner` (the demo2 connection id), database `SE_DEMO_LIBRARY`, schema
   `WEALTH_PORTFOLIO_NLQ`. Change `as_connection` to the target instance's Snowflake connection id.
 - **Names:** every dataset table and column name, and every column reference in dimensions,
   metrics and relationships, is uppercase to match Snowflake. Object `unique_name`s are unchanged.
