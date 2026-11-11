@@ -1,0 +1,6 @@
+unique_name: Cash Share of Market Value
+object_type: metric_calc
+label: Cash Share of Market Value
+description: "Share of total client assets held in cash: market value in the Cash asset class divided by total market value across all asset classes, at each month end (point-in-time, As Of axis). Cash sweep share, cash allocation."
+expression: "CASE WHEN ISEMPTY(([Security Dimension].[Security Hierarchy].[All], [Measures].[Market Value])) OR ([Security Dimension].[Security Hierarchy].[All], [Measures].[Market Value]) = 0 THEN NULL ELSE ([Security Dimension].[Security Hierarchy].[Asset Class].&[Cash], [Measures].[Market Value]) / ([Security Dimension].[Security Hierarchy].[All], [Measures].[Market Value]) END"
+format: "0.00%"

@@ -15,35 +15,35 @@ hierarchies:
     - unique_name: Year End Flag
       label: Year End Flag
       dataset: dim_date
-      name_column: is_year_end
+      name_column: IS_YEAR_END
       key_columns:
-      - is_year_end
+      - IS_YEAR_END
       description: Whether the month is a calendar year-end.
   - unique_name: Quarter
     parallel_periods:
     - key_columns:
-      - prior_year_num
+      - PRIOR_YEAR_NUM
       level: Year
     secondary_attributes:
     - unique_name: Quarter Number
       label: Quarter Number
       dataset: dim_date
-      name_column: quarter_num
+      name_column: QUARTER_NUM
       key_columns:
-      - quarter_num
+      - QUARTER_NUM
       description: Quarter number within the year (1-4).
   - unique_name: Month
     parallel_periods:
     - key_columns:
-      - prior_year_num
+      - PRIOR_YEAR_NUM
       level: Year
     secondary_attributes:
     - unique_name: Month Of Year Name
       label: Month Of Year Name
       dataset: dim_date
-      name_column: month_name
+      name_column: MONTH_NAME
       key_columns:
-      - month_name
+      - MONTH_NAME
       description: Calendar month name (Jan..Dec), shared across years.
 level_attributes:
 - unique_name: Year
@@ -51,18 +51,18 @@ level_attributes:
   description: Calendar year.
   dataset: dim_date
   key_columns:
-  - year_num
-  name_column: year_num
-  sort_column: year_num
+  - YEAR_NUM
+  name_column: YEAR_NUM
+  sort_column: YEAR_NUM
   time_unit: year
 - unique_name: Quarter
   label: Quarter
   description: Calendar quarter (unique per quarter, e.g. Q3 2023).
   dataset: dim_date
   key_columns:
-  - quarter_name
-  name_column: quarter_name
-  sort_column: quarter_name
+  - QUARTER_NAME
+  name_column: QUARTER_NAME
+  sort_column: QUARTER_NAME
   time_unit: quarter
 - unique_name: Month
   label: Month
@@ -70,7 +70,7 @@ level_attributes:
   dataset: dim_date
   is_unique_key: true
   key_columns:
-  - date_id
-  name_column: year_month
-  sort_column: date_id
+  - DATE_ID
+  name_column: YEAR_MONTH
+  sort_column: DATE_ID
   time_unit: month

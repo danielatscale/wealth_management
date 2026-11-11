@@ -4,7 +4,7 @@ label: Cost Basis
 description: Total cost basis of held positions at the snapshot.
 calculation_method: sum
 dataset: fact_position_snapshot
-column: cost_basis
+column: COST_BASIS
 format: $#,##0.00
 unrelated_dimensions_handling: repeat
 semi_additive:

@@ -4,6 +4,6 @@ label: Realized Cost Basis
 description: Cost basis of realized sell lots.
 calculation_method: sum
 dataset: fact_realized_gain
-column: cost_basis
+column: COST_BASIS
 format: $#,##0.00
 unrelated_dimensions_handling: repeat

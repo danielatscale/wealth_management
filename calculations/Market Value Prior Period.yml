@@ -1,0 +1,6 @@
+unique_name: Market Value Prior Period
+object_type: metric_calc
+label: Market Value Prior Period
+description: "Market value (AUM) at the end of the previous period on the As Of axis: the prior quarter when grouped by As Of Quarter, the prior month when grouped by As Of Month, the prior year when grouped by As Of Year. Use for quarter-over-quarter AUM."
+expression: "CASE WHEN ISEMPTY([Measures].[Market Value]) THEN NULL ELSE ([As Of Date Dimension].[As Of Date Hierarchy].CurrentMember.PrevMember, [Measures].[Market Value]) END"
+format: "$#,##0.00"

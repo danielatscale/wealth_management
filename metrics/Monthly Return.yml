@@ -4,6 +4,6 @@ label: Monthly Return
 description: Average monthly investment return in percent points (pure performance; net flow excluded).
 calculation_method: average
 dataset: fact_account_performance
-column: monthly_return
+column: MONTHLY_RETURN
 format: '#,##0.00'
 unrelated_dimensions_handling: repeat

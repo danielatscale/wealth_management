@@ -1,0 +1,6 @@
+unique_name: Market Value Change vs Prior Period
+object_type: metric_calc
+label: Market Value Change vs Prior Period
+description: "Change in market value (AUM) from the end of the previous period (Market Value - Market Value Prior Period); quarter-over-quarter when grouped by As Of Quarter."
+expression: "CASE WHEN ISEMPTY([Measures].[Market Value]) OR ISEMPTY([Measures].[Market Value Prior Period]) THEN NULL ELSE [Measures].[Market Value] - [Measures].[Market Value Prior Period] END"
+format: "$#,##0.00"

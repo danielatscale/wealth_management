@@ -3,27 +3,27 @@ object_type: dataset
 label: dim_date
 description: Monthly month-end date dimension (36 snapshots, 2023-07-31..2026-06-30). prior_year_num backs ParallelPeriod (Rule 13).
 connection_id: Connection - Wealth Portfolio
-table: dim_date
+table: DIM_DATE
 columns:
-- name: date_id
+- name: DATE_ID
   data_type: date
-- name: year_num
+- name: YEAR_NUM
   data_type: long
-- name: month_num
+- name: MONTH_NUM
   data_type: long
-- name: month_name
+- name: MONTH_NAME
   data_type: string
-- name: year_month
+- name: YEAR_MONTH
   data_type: string
-- name: quarter_num
+- name: QUARTER_NUM
   data_type: long
-- name: quarter_name
+- name: QUARTER_NAME
   data_type: string
-- name: is_quarter_end
+- name: IS_QUARTER_END
   data_type: boolean
-- name: is_year_end
+- name: IS_YEAR_END
   data_type: boolean
-- name: prior_year_num
+- name: PRIOR_YEAR_NUM
   data_type: long
   sql: year_num - 1
   dialects:

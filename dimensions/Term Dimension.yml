@@ -15,5 +15,5 @@ level_attributes:
   description: Short-term vs long-term realized gain.
   dataset: fact_realized_gain
   key_columns:
-  - term
-  name_column: term
+  - TERM
+  name_column: TERM

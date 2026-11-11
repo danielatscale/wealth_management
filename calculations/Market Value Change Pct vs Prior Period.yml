@@ -1,0 +1,6 @@
+unique_name: Market Value Change Pct vs Prior Period
+object_type: metric_calc
+label: Market Value Change Pct vs Prior Period
+description: "Percent change in market value (AUM) from the end of the previous period; quarter-over-quarter growth when grouped by As Of Quarter."
+expression: "CASE WHEN ISEMPTY([Measures].[Market Value Prior Period]) OR [Measures].[Market Value Prior Period] = 0 THEN NULL ELSE ([Measures].[Market Value] - [Measures].[Market Value Prior Period]) / [Measures].[Market Value Prior Period] END"
+format: "0.00%"

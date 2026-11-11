@@ -4,7 +4,7 @@ label: Benchmark Index Level
 description: Benchmark index level at the snapshot (filter to a single benchmark). Semi-additive over date.
 calculation_method: sum
 dataset: fact_benchmark_return
-column: index_level
+column: INDEX_LEVEL
 format: '#,##0.00'
 unrelated_dimensions_handling: repeat
 semi_additive:

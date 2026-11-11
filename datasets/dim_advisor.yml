@@ -3,15 +3,15 @@ object_type: dataset
 label: dim_advisor
 description: Advisor master. Top of the Advisor > Household > Account snowflake.
 connection_id: Connection - Wealth Portfolio
-table: dim_advisor
+table: DIM_ADVISOR
 columns:
-- name: advisor_id
+- name: ADVISOR_ID
   data_type: long
-- name: advisor_name
+- name: ADVISOR_NAME
   data_type: string
-- name: office_region
+- name: OFFICE_REGION
   data_type: string
-- name: tenure_years
+- name: TENURE_YEARS
   data_type: long
-- name: is_senior
+- name: IS_SENIOR
   data_type: boolean

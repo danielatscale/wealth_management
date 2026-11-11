@@ -3,19 +3,19 @@ object_type: dataset
 label: dim_security
 description: 'Security master: asset class, GICS sector (equities), ticker, region.'
 connection_id: Connection - Wealth Portfolio
-table: dim_security
+table: DIM_SECURITY
 columns:
-- name: security_id
+- name: SECURITY_ID
   data_type: long
-- name: ticker
+- name: TICKER
   data_type: string
-- name: security_name
+- name: SECURITY_NAME
   data_type: string
-- name: asset_class
+- name: ASSET_CLASS
   data_type: string
-- name: sector
+- name: SECTOR
   data_type: string
-- name: region
+- name: REGION
   data_type: string
-- name: expense_ratio
+- name: EXPENSE_RATIO
   data_type: double

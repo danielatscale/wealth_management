@@ -4,6 +4,6 @@ label: Realized Proceeds
 description: Total proceeds from realized sells.
 calculation_method: sum
 dataset: fact_realized_gain
-column: proceeds
+column: PROCEEDS
 format: $#,##0.00
 unrelated_dimensions_handling: repeat

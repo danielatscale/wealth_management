@@ -3,33 +3,33 @@ object_type: dataset
 label: fact_realized_gain
 description: Realized sell lots (Dec-2025 TLH + 2026 YTD trims). Transactional (additive). term Short/Long is degenerate; realized_loss/realized_profit are calculated columns splitting the gain sign (NLQ4).
 connection_id: Connection - Wealth Portfolio
-table: fact_realized_gain
+table: FACT_REALIZED_GAIN
 columns:
-- name: realized_id
+- name: REALIZED_ID
   data_type: long
-- name: account_id
+- name: ACCOUNT_ID
   data_type: long
-- name: security_id
+- name: SECURITY_ID
   data_type: long
-- name: sell_date
+- name: SELL_DATE
   data_type: date
-- name: quantity
+- name: QUANTITY
   data_type: decimal(18,2)
-- name: proceeds
+- name: PROCEEDS
   data_type: decimal(18,2)
-- name: cost_basis
+- name: COST_BASIS
   data_type: decimal(18,2)
-- name: realized_gain
+- name: REALIZED_GAIN
   data_type: decimal(18,2)
-- name: term
+- name: TERM
   data_type: string
-- name: realized_loss
+- name: REALIZED_LOSS
   data_type: decimal(18,2)
   sql: CASE WHEN realized_gain < 0 THEN realized_gain ELSE 0 END
   dialects:
   - dialect: DatabricksSQL
     sql: CASE WHEN realized_gain < 0 THEN realized_gain ELSE 0 END
-- name: realized_profit
+- name: REALIZED_PROFIT
   data_type: decimal(18,2)
   sql: CASE WHEN realized_gain > 0 THEN realized_gain ELSE 0 END
   dialects:

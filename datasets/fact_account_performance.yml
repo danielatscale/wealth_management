@@ -3,19 +3,19 @@ object_type: dataset
 label: fact_account_performance
 description: 'Account performance: one row per account x month-end (values + monthly return %). net_flow is modeled as 0 (out of scope).'
 connection_id: Connection - Wealth Portfolio
-table: fact_account_performance
+table: FACT_ACCOUNT_PERFORMANCE
 columns:
-- name: perf_id
+- name: PERF_ID
   data_type: long
-- name: snapshot_date
+- name: SNAPSHOT_DATE
   data_type: date
-- name: account_id
+- name: ACCOUNT_ID
   data_type: long
-- name: beginning_value
+- name: BEGINNING_VALUE
   data_type: decimal(18,2)
-- name: net_flow
+- name: NET_FLOW
   data_type: decimal(18,2)
-- name: ending_value
+- name: ENDING_VALUE
   data_type: decimal(18,2)
-- name: monthly_return
+- name: MONTHLY_RETURN
   data_type: double

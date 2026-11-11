@@ -4,6 +4,6 @@ label: Realized Profit
 description: Realized profits only (positive amounts; winner trims).
 calculation_method: sum
 dataset: fact_realized_gain
-column: realized_profit
+column: REALIZED_PROFIT
 format: $#,##0.00
 unrelated_dimensions_handling: repeat

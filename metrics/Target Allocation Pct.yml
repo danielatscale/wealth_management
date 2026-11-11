@@ -4,7 +4,7 @@ label: Target Allocation Pct
 description: Target asset-class weight in percent points from the account's risk model.
 calculation_method: sum
 dataset: fact_allocation_drift
-column: target_pct
+column: TARGET_PCT
 format: '#,##0.00'
 unrelated_dimensions_handling: repeat
 semi_additive:

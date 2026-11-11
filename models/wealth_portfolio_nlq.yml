@@ -8,7 +8,7 @@ relationships:
   from:
     dataset: fact_position_snapshot
     join_columns:
-    - snapshot_date
+    - SNAPSHOT_DATE
   to:
     dimension: Date Dimension
     level: Month
@@ -17,7 +17,7 @@ relationships:
   from:
     dataset: fact_position_snapshot
     join_columns:
-    - account_id
+    - ACCOUNT_ID
   to:
     dimension: Account Dimension
     level: Account
@@ -25,7 +25,7 @@ relationships:
   from:
     dataset: fact_position_snapshot
     join_columns:
-    - security_id
+    - SECURITY_ID
   to:
     dimension: Security Dimension
     level: Security
@@ -33,7 +33,7 @@ relationships:
   from:
     dataset: fact_account_performance
     join_columns:
-    - snapshot_date
+    - SNAPSHOT_DATE
   to:
     dimension: Date Dimension
     level: Month
@@ -42,7 +42,7 @@ relationships:
   from:
     dataset: fact_account_performance
     join_columns:
-    - account_id
+    - ACCOUNT_ID
   to:
     dimension: Account Dimension
     level: Account
@@ -50,7 +50,7 @@ relationships:
   from:
     dataset: fact_benchmark_return
     join_columns:
-    - snapshot_date
+    - SNAPSHOT_DATE
   to:
     dimension: Date Dimension
     level: Month
@@ -59,7 +59,7 @@ relationships:
   from:
     dataset: fact_realized_gain
     join_columns:
-    - sell_date
+    - SELL_DATE
   to:
     dimension: Date Dimension
     level: Month
@@ -68,7 +68,7 @@ relationships:
   from:
     dataset: fact_realized_gain
     join_columns:
-    - account_id
+    - ACCOUNT_ID
   to:
     dimension: Account Dimension
     level: Account
@@ -76,7 +76,7 @@ relationships:
   from:
     dataset: fact_realized_gain
     join_columns:
-    - security_id
+    - SECURITY_ID
   to:
     dimension: Security Dimension
     level: Security
@@ -84,7 +84,7 @@ relationships:
   from:
     dataset: fact_allocation_drift
     join_columns:
-    - snapshot_date
+    - SNAPSHOT_DATE
   to:
     dimension: Date Dimension
     level: Month
@@ -93,7 +93,7 @@ relationships:
   from:
     dataset: fact_allocation_drift
     join_columns:
-    - account_id
+    - ACCOUNT_ID
   to:
     dimension: Account Dimension
     level: Account
@@ -101,7 +101,7 @@ relationships:
   from:
     dataset: fact_allocation_drift
     join_columns:
-    - asset_class
+    - ASSET_CLASS
   to:
     dimension: Security Dimension
     level: Asset Class
@@ -151,3 +151,11 @@ metrics:
   folder: Time Intelligence
 - unique_name: Market Value Prior Year
   folder: Time Intelligence
+- unique_name: Market Value Prior Period
+  folder: Time Intelligence
+- unique_name: Market Value Change vs Prior Period
+  folder: Time Intelligence
+- unique_name: Market Value Change Pct vs Prior Period
+  folder: Time Intelligence
+- unique_name: Cash Share of Market Value
+  folder: Allocation

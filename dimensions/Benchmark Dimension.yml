@@ -15,5 +15,5 @@ level_attributes:
   description: Benchmark index name.
   dataset: fact_benchmark_return
   key_columns:
-  - benchmark_id
-  name_column: benchmark_name
+  - BENCHMARK_ID
+  name_column: BENCHMARK_NAME

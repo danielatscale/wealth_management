@@ -15,62 +15,62 @@ hierarchies:
     - unique_name: Office Region
       label: Office Region
       dataset: dim_advisor
-      name_column: office_region
+      name_column: OFFICE_REGION
       key_columns:
-      - office_region
+      - OFFICE_REGION
       description: Advisor office region.
     - unique_name: Advisor Seniority
       label: Advisor Seniority
       dataset: dim_advisor
-      name_column: is_senior
+      name_column: IS_SENIOR
       key_columns:
-      - is_senior
+      - IS_SENIOR
       description: Whether the advisor is senior.
     - unique_name: Advisor Tenure Years
       label: Advisor Tenure Years
       dataset: dim_advisor
-      name_column: tenure_years
+      name_column: TENURE_YEARS
       key_columns:
-      - tenure_years
+      - TENURE_YEARS
       description: Advisor tenure in years.
   - unique_name: Household
     secondary_attributes:
     - unique_name: Segment
       label: Segment
       dataset: dim_household
-      name_column: segment
+      name_column: SEGMENT
       key_columns:
-      - segment
+      - SEGMENT
       description: 'Wealth segment: Mass Affluent / HNW / UHNW (NLQ5).'
     - unique_name: Household Region
       label: Household Region
       dataset: dim_household
-      name_column: region
+      name_column: REGION
       key_columns:
-      - region
+      - REGION
       description: Household region.
   - unique_name: Account
     secondary_attributes:
     - unique_name: Account Type
       label: Account Type
       dataset: dim_account
-      name_column: account_type
+      name_column: ACCOUNT_TYPE
       key_columns:
-      - account_type
+      - ACCOUNT_TYPE
       description: Brokerage / IRA / 401(k) Rollover / Trust.
     - unique_name: Registration
       label: Registration
       dataset: dim_account
-      name_column: registration
+      name_column: REGISTRATION
       key_columns:
-      - registration
+      - REGISTRATION
       description: Account registration.
     - unique_name: Risk Model
       label: Risk Model
       dataset: dim_account
-      name_column: risk_model
+      name_column: RISK_MODEL
       key_columns:
-      - risk_model
+      - RISK_MODEL
       description: 'Target risk model: Conservative/Moderate/Growth/Aggressive.'
 level_attributes:
 - unique_name: Advisor
@@ -79,36 +79,36 @@ level_attributes:
   dataset: dim_advisor
   is_unique_key: true
   key_columns:
-  - advisor_id
-  name_column: advisor_name
+  - ADVISOR_ID
+  name_column: ADVISOR_NAME
 - unique_name: Household
   label: Household
   description: Client household.
   dataset: dim_household
   is_unique_key: true
   key_columns:
-  - household_id
-  name_column: household_name
+  - HOUSEHOLD_ID
+  name_column: HOUSEHOLD_NAME
 - unique_name: Account
   label: Account
   description: Individual account (leaf; fact join grain). Account number is the label.
   dataset: dim_account
   is_unique_key: true
   key_columns:
-  - account_id
-  name_column: account_id
+  - ACCOUNT_ID
+  name_column: ACCOUNT_ID
 relationships:
 - from:
     dataset: dim_account
     join_columns:
-    - household_id
+    - HOUSEHOLD_ID
   to:
     level: Household
   type: snowflake
 - from:
     dataset: dim_household
     join_columns:
-    - advisor_id
+    - ADVISOR_ID
   to:
     level: Advisor
   type: snowflake

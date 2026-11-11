@@ -3,17 +3,17 @@ object_type: dataset
 label: dim_account
 description: Account master (Brokerage/IRA/401k/Trust), each mapped to a target risk model. Leaf of the Account snowflake.
 connection_id: Connection - Wealth Portfolio
-table: dim_account
+table: DIM_ACCOUNT
 columns:
-- name: account_id
+- name: ACCOUNT_ID
   data_type: long
-- name: household_id
+- name: HOUSEHOLD_ID
   data_type: long
-- name: account_type
+- name: ACCOUNT_TYPE
   data_type: string
-- name: registration
+- name: REGISTRATION
   data_type: string
-- name: risk_model
+- name: RISK_MODEL
   data_type: string
-- name: open_date
+- name: OPEN_DATE
   data_type: date
