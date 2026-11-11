@@ -1,6 +1,6 @@
 unique_name: Connection - Wealth Portfolio
 label: Connection - Wealth Portfolio
 object_type: connection
-as_connection: SnowflakePartner
+as_connection: Snowflake Partner
 database: SE_DEMO_LIBRARY
 schema: WEALTH_PORTFOLIO_NLQ
