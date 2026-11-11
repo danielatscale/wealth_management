@@ -22,6 +22,15 @@ over 3 years), which is what makes the performance and drift questions interesti
 3. **What's my exposure to equities / to a sector like technology?**
 4. **What are my realized vs unrealized gains year-to-date?**
 5. **Which households have the largest AUM (and who's the advisor)?**
+6. What was AUM by advisor at the end of Q3, and how did it compare to Q2?
+7. What share of total client assets sat in cash at each of the last 13 month ends?
+8. This uses Asset Class Market Value for cash over total Market Value, or Actual Allocation Pct by asset class.
+9. What’s the total AUM for households whose accounts span more than one advisor? 
+10. How has total market value changed vs the same month last year, by advisor? (Market Value Prior Year)
+11. Which securities drove the most realized gains year to date, and which booked realized losses?
+12. How does unrealized gain today compare with a year ago?
+13. Which accounts are most underweight in fixed income vs target?
+14. Which accounts beat the benchmark’s monthly return most often this year? 
 
 ## Engineered narratives (baked into the data, seed 42)
 
