@@ -1,0 +1,32 @@
+unique_name: wealth_portfolio_cortex_catalog
+object_type: catalog
+label: Wealth Portfolio (Cortex build)
+description: AtScale model for a wirehouse advisory book (client portfolio performance and allocation), built by Snowflake Cortex Code from Snowflake Horizon metadata and the warehouse, using the AtScale MCP tools and sml-cli.
+version: 1.7
+aggressive_agg_promotion: false
+build_speculative_aggs: false
+ai_context:
+  - source_type: catalog
+    source: Snowflake Horizon - SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ (account CK01391)
+    instruction: >-
+      The only business context for this model. Read it with SQL on the Snowflake connection:
+      (1) table and column comments: SELECT table_name, column_name, data_type, comment FROM
+      SE_DEMO_LIBRARY.INFORMATION_SCHEMA.COLUMNS WHERE table_schema = 'WEALTH_PORTFOLIO_NLQ', and the
+      table comments in SE_DEMO_LIBRARY.INFORMATION_SCHEMA.TABLES; (2) keys: SHOW PRIMARY KEYS IN SCHEMA
+      SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ and SHOW IMPORTED KEYS IN SCHEMA SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ;
+      (3) the business glossary: SELECT ct.table_name, ct.column_name, g.name, g.category, g.description FROM
+      SE_DEMO_LIBRARY.METADATA.COLUMN_TERMS ct JOIN SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS g USING (term_guid)
+      WHERE ct.schema_name = 'WEALTH_PORTFOLIO_NLQ'. Column comments carry meaning, units, allowed values and
+      traps; treat them as authoritative. Glossary terms are business definitions: a term with a formula becomes
+      a calculation over component measures, a classification becomes a dimension attribute, and a term linked
+      to a column is that column's definition. Reuse comment and glossary text as the front of SML descriptions.
+  - source_type: warehouse
+    source: Snowflake through the AtScale data connection "Snowflake Partner"
+    instruction: >-
+      Rows come from Snowflake database SE_DEMO_LIBRARY, schema WEALTH_PORTFOLIO_NLQ, through the AtScale
+      data-warehouse connection whose connectionId is "Snowflake Partner". Declare one SML connection with
+      as_connection: Snowflake Partner, database SE_DEMO_LIBRARY, schema WEALTH_PORTFOLIO_NLQ. Tables and
+      columns are unquoted, so their names are UPPERCASE; use UPPERCASE table and column names in every dataset.
+      A derived (sql:) dataset is not resolved against the connection's database and schema, so qualify every
+      table in it as SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.<TABLE>. Do not read any other schema's tables, and do
+      not read any existing AtScale model or catalog: build from Horizon and the warehouse only.
