@@ -1,0 +1,25 @@
+unique_name: ds_fact_allocation
+object_type: dataset
+label: Account Allocation vs Target
+connection_id: Snowflake Partner
+description: 'One row per account, asset class and month end: the account risk model target weight (DIM_MODEL_TARGET)
+  beside the actual market value in that asset class (FACT_POSITION_SNAPSHOT x DIM_SECURITY), zero when the account
+  holds none, so missing asset classes count as fully underweight.'
+sql: "SELECT a.SNAPSHOT_DATE, a.ACCOUNT_ID, a.ASSET_CLASS, a.TARGET_PCT, COALESCE(p.MV, 0) AS ASSET_CLASS_MV\nFROM\
+  \ (SELECT d.DATE_ID AS SNAPSHOT_DATE, acc.ACCOUNT_ID, t.ASSET_CLASS, t.TARGET_PCT\n      FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE\
+  \ d\n      CROSS JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT acc\n      JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET\
+  \ t ON t.MODEL = acc.RISK_MODEL) a\nLEFT JOIN (SELECT ps.SNAPSHOT_DATE, ps.ACCOUNT_ID, s.ASSET_CLASS, SUM(ps.MARKET_VALUE)\
+  \ AS MV\n           FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT ps\n           JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY\
+  \ s ON s.SECURITY_ID = ps.SECURITY_ID\n           GROUP BY 1, 2, 3) p\n  ON p.SNAPSHOT_DATE = a.SNAPSHOT_DATE\
+  \ AND p.ACCOUNT_ID = a.ACCOUNT_ID AND p.ASSET_CLASS = a.ASSET_CLASS"
+columns:
+- name: SNAPSHOT_DATE
+  data_type: datetime
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: ASSET_CLASS
+  data_type: string
+- name: TARGET_PCT
+  data_type: decimal
+- name: ASSET_CLASS_MV
+  data_type: decimal

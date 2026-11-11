@@ -1,0 +1,7 @@
+unique_name: Sale Proceeds
+object_type: metric
+label: Sale Proceeds
+description: Sale proceeds of lots sold, USD. Additive over time.
+dataset: ds_fact_realized_gain
+column: PROCEEDS
+calculation_method: sum

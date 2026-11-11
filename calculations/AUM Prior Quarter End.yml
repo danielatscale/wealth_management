@@ -1,0 +1,6 @@
+unique_name: AUM Prior Quarter End
+object_type: metric_calc
+label: AUM Prior Quarter End
+description: AUM at the previous quarter end (the same month end one quarter earlier), in USD. Use at the Quarter
+  level or a quarter-end Month End.
+expression: ([Measures].[AUM], ParallelPeriod([Month End Date].[Calendar].[Quarter], 1, [Month End Date].[Calendar].CurrentMember))

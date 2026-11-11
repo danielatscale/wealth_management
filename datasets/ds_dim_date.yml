@@ -1,0 +1,24 @@
+unique_name: ds_dim_date
+object_type: dataset
+label: Month End Date
+connection_id: Snowflake Partner
+table: DIM_DATE
+columns:
+- name: DATE_ID
+  data_type: datetime
+- name: YEAR_NUM
+  data_type: decimal
+- name: MONTH_NUM
+  data_type: decimal
+- name: MONTH_NAME
+  data_type: string
+- name: YEAR_MONTH
+  data_type: string
+- name: QUARTER_NUM
+  data_type: decimal
+- name: QUARTER_NAME
+  data_type: string
+- name: IS_QUARTER_END
+  data_type: boolean
+- name: IS_YEAR_END
+  data_type: boolean

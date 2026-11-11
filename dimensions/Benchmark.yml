@@ -1,0 +1,22 @@
+unique_name: Benchmark
+object_type: dimension
+label: Benchmark
+type: standard
+is_degenerate: true
+level_attributes:
+- unique_name: Benchmark
+  label: Benchmark
+  description: 'Market index used to judge performance: S&P 500 (BM_SPX) for equity-heavy portfolios, Bloomberg
+    US Aggregate Bond (BM_AGG) for bonds, and a 60/40 Blended Benchmark (BM_6040) for balanced portfolios.'
+  dataset: ds_fact_benchmark_return
+  key_columns:
+  - BENCHMARK_ID
+  name_column: BENCHMARK_NAME
+  is_unique_key: true
+hierarchies:
+- unique_name: Benchmark
+  label: Benchmark
+  filter_empty: 'yes'
+  folder: Benchmark
+  levels:
+  - unique_name: Benchmark

@@ -1,0 +1,8 @@
+unique_name: Cash Share
+object_type: metric_calc
+label: Cash Share %
+description: 'Cash Share: share of total client assets held in cash at a month end, in percent: market value in
+  the Cash asset class / total market value x 100. Also called cash allocation or cash sweep share.'
+expression: CASE WHEN ISEMPTY(([Asset Class].[Asset Class].[All], [Measures].[AUM])) OR ([Asset Class].[Asset Class].[All],
+  [Measures].[AUM]) = 0 THEN NULL ELSE ([Asset Class].[Asset Class].[Asset Class].&[Cash], [Measures].[AUM]) / ([Asset
+  Class].[Asset Class].[All], [Measures].[AUM]) * 100 END

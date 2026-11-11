@@ -1,0 +1,12 @@
+unique_name: Benchmark Index Level
+object_type: metric
+label: Benchmark Index Level
+description: 'Index level of a benchmark at the month end. A level, not additive: shows the last month end in the
+  period; only meaningful for one Benchmark.'
+dataset: ds_fact_benchmark_return
+column: INDEX_LEVEL
+calculation_method: maximum
+semi_additive:
+  position: last
+  relationships:
+  - bm_month_end

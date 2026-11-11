@@ -1,0 +1,65 @@
+unique_name: Security
+object_type: dimension
+label: Security
+type: standard
+level_attributes:
+- unique_name: Security
+  label: Security
+  description: Security held in client accounts (360), classified by asset class, sector and region. Security name
+    is unique per security.
+  dataset: ds_dim_security
+  key_columns:
+  - SECURITY_ID
+  name_column: SECURITY_NAME
+  is_unique_key: true
+hierarchies:
+- unique_name: Security
+  label: Security
+  filter_empty: 'yes'
+  folder: Security
+  levels:
+  - unique_name: Security
+    secondary_attributes:
+    - unique_name: Ticker
+      label: Ticker
+      description: Ticker symbol (synthetic), unique per security.
+      dataset: ds_dim_security
+      name_column: TICKER
+      key_columns:
+      - TICKER
+    - unique_name: Sector
+      label: Sector
+      description: 'GICS sector for equities (Communication Services, Consumer Discretionary, Consumer Staples,
+        Energy, Financials, Health Care, Industrials, Technology, Utilities); ''-'' for non-equity securities, so
+        a sector is only meaningful within the Equity asset class. Sector Exposure: equity market value by sector
+        at a month end; Technology is the largest (about $8.2B).'
+      dataset: ds_dim_security
+      name_column: SECTOR
+      key_columns:
+      - SECTOR
+    - unique_name: Security Region
+      label: Security Region
+      description: 'Issuer region: US or International.'
+      dataset: ds_dim_security
+      name_column: REGION
+      key_columns:
+      - REGION
+    - unique_name: Expense Ratio
+      label: Expense Ratio
+      description: Annual expense ratio in percent (0 to 1.08; 0.75 means 0.75% a year). 0 for single stocks.
+      dataset: ds_dim_security
+      name_column: EXPENSE_RATIO
+      key_columns:
+      - EXPENSE_RATIO
+relationships:
+- unique_name: Security_to_Asset_Class
+  from:
+    hierarchy: Security
+    level: Security
+    dataset: ds_dim_security
+    join_columns:
+    - ASSET_CLASS
+  to:
+    dimension: Asset Class
+    level: Asset Class
+  type: embedded

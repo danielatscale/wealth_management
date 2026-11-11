@@ -1,0 +1,24 @@
+unique_name: ds_fact_position_snapshot
+object_type: dataset
+label: Position Snapshot
+connection_id: Snowflake Partner
+table: FACT_POSITION_SNAPSHOT
+columns:
+- name: POSITION_ID
+  data_type: decimal
+- name: SNAPSHOT_DATE
+  data_type: datetime
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: SECURITY_ID
+  data_type: decimal
+- name: QUANTITY
+  data_type: decimal
+- name: PRICE
+  data_type: decimal
+- name: MARKET_VALUE
+  data_type: decimal
+- name: COST_BASIS
+  data_type: decimal
+- name: UNREALIZED_GAIN
+  data_type: decimal

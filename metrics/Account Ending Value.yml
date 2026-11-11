@@ -1,0 +1,12 @@
+unique_name: Account Ending Value
+object_type: metric
+label: Account Ending Value
+description: 'Account value at the month end, USD, from monthly account performance: an alternative AUM source to
+  the position-level AUM. A balance: shows the last month end in the period.'
+dataset: ds_fact_account_performance
+column: ENDING_VALUE
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - perf_month_end

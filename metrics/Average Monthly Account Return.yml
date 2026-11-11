@@ -1,0 +1,9 @@
+unique_name: Average Monthly Account Return
+object_type: metric
+label: Average Monthly Account Return
+description: 'Monthly Return: investment return of an account over one month, in percent (-2.13 = -2.13%), excluding
+  contributions and withdrawals. Averaging monthly returns gives the typical month; it is not the period return
+  (compound for that).'
+dataset: ds_fact_account_performance
+column: MONTHLY_RETURN
+calculation_method: average

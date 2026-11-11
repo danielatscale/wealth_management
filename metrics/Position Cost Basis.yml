@@ -1,0 +1,12 @@
+unique_name: Position Cost Basis
+object_type: metric
+label: Position Cost Basis
+description: 'Cost basis of positions held: what was paid for the units held at a month end, in USD. A balance:
+  last month end in the period. Not the cost basis of lots sold (see Realized Cost Basis).'
+dataset: ds_fact_position_snapshot
+column: COST_BASIS
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - pos_month_end

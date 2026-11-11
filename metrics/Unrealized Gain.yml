@@ -1,0 +1,13 @@
+unique_name: Unrealized Gain
+object_type: metric
+label: Unrealized Gain
+description: 'Unrealized gain or loss on positions still held: market value minus cost basis at a month end, in
+  USD; negative is an unrealized loss. A balance, not additive across months: shows the last month end in the period.
+  About $3.3B across the book at 2026-06-30.'
+dataset: ds_fact_position_snapshot
+column: UNREALIZED_GAIN
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - pos_month_end

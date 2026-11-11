@@ -1,0 +1,20 @@
+unique_name: ds_fact_account_performance
+object_type: dataset
+label: Account Performance
+connection_id: Snowflake Partner
+table: FACT_ACCOUNT_PERFORMANCE
+columns:
+- name: PERF_ID
+  data_type: decimal
+- name: SNAPSHOT_DATE
+  data_type: datetime
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: BEGINNING_VALUE
+  data_type: decimal
+- name: NET_FLOW
+  data_type: decimal
+- name: ENDING_VALUE
+  data_type: decimal
+- name: MONTHLY_RETURN
+  data_type: decimal

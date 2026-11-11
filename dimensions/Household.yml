@@ -1,0 +1,65 @@
+unique_name: Household
+object_type: dimension
+label: Household
+type: standard
+level_attributes:
+- unique_name: Household
+  label: Household
+  description: 'Client household (1,500): a family or entity whose accounts are managed together under exactly one
+    advisor. Household AUM is the sum of its accounts'' market value at a month end. Names are not unique (144 names
+    across 1,500 households), so list households with their ID, advisor or segment.'
+  dataset: ds_dim_household
+  key_columns:
+  - HOUSEHOLD_ID
+  name_column: HOUSEHOLD_NAME
+  is_unique_key: true
+hierarchies:
+- unique_name: Household
+  label: Household
+  filter_empty: 'yes'
+  folder: Household
+  levels:
+  - unique_name: Household
+    secondary_attributes:
+    - unique_name: Household ID
+      label: Household ID
+      description: Household identifier (primary key). Use it to tell apart households that share a name.
+      dataset: ds_dim_household
+      name_column: HOUSEHOLD_ID
+      key_columns:
+      - HOUSEHOLD_ID
+    - unique_name: Client Segment
+      label: Client Segment
+      description: 'Wealth tier of a household: Mass Affluent (937 households, about $1M average AUM), HNW (432,
+        about $12M) or UHNW (131, about $104M).'
+      dataset: ds_dim_household
+      name_column: SEGMENT
+      key_columns:
+      - SEGMENT
+    - unique_name: Household Region
+      label: Household Region
+      description: 'Region where the household lives: Midwest, Northeast, Southeast, Southwest, West. Not the advisor''s
+        office region.'
+      dataset: ds_dim_household
+      name_column: REGION
+      key_columns:
+      - REGION
+    - unique_name: Household Acquisition Date
+      label: Household Acquisition Date
+      description: Date the household became a client, 2008 to 2026.
+      dataset: ds_dim_household
+      name_column: ACQUISITION_DATE
+      key_columns:
+      - ACQUISITION_DATE
+relationships:
+- unique_name: Household_to_Advisor
+  from:
+    hierarchy: Household
+    level: Household
+    dataset: ds_dim_household
+    join_columns:
+    - ADVISOR_ID
+  to:
+    dimension: Advisor
+    level: Advisor
+  type: embedded

@@ -1,0 +1,9 @@
+unique_name: Asset Allocation
+object_type: metric_calc
+label: Asset Allocation %
+description: 'Asset Allocation: share of an account''s (or book''s) market value in each asset class at a month
+  end, in percent: market value in the asset class / total market value x 100. Slice by Asset Class (or by Sector
+  within Equity for sector share).'
+expression: CASE WHEN ISEMPTY(([Asset Class].[Asset Class].[All], [Measures].[AUM])) OR ([Asset Class].[Asset Class].[All],
+  [Measures].[AUM]) = 0 THEN NULL ELSE [Measures].[AUM] / ([Asset Class].[Asset Class].[All], [Measures].[AUM])
+  * 100 END

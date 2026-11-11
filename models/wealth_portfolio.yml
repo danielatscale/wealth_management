@@ -1,0 +1,154 @@
+unique_name: wealth_portfolio
+object_type: model
+label: Wealth Portfolio
+description: 'Wirehouse advisory book: advisors > households > accounts, month-end positions (AUM, allocation, sector
+  exposure, unrealized gains), monthly account and benchmark performance, realized gains, and allocation drift vs
+  risk-model targets. Built from Snowflake Horizon metadata for SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ. Balances (AUM,
+  market value, unrealized gain) take the last month end in a period; never sum them across months.'
+relationships:
+- unique_name: pos_month_end
+  from:
+    dataset: ds_fact_position_snapshot
+    join_columns:
+    - SNAPSHOT_DATE
+  to:
+    dimension: Month End Date
+    level: Month End
+- unique_name: pos_account
+  from:
+    dataset: ds_fact_position_snapshot
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: pos_security
+  from:
+    dataset: ds_fact_position_snapshot
+    join_columns:
+    - SECURITY_ID
+  to:
+    dimension: Security
+    level: Security
+- unique_name: perf_month_end
+  from:
+    dataset: ds_fact_account_performance
+    join_columns:
+    - SNAPSHOT_DATE
+  to:
+    dimension: Month End Date
+    level: Month End
+- unique_name: perf_account
+  from:
+    dataset: ds_fact_account_performance
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: bm_month_end
+  from:
+    dataset: ds_fact_benchmark_return
+    join_columns:
+    - SNAPSHOT_DATE
+  to:
+    dimension: Month End Date
+    level: Month End
+- unique_name: rg_month_end
+  from:
+    dataset: ds_fact_realized_gain
+    join_columns:
+    - SELL_MONTH_END
+  to:
+    dimension: Month End Date
+    level: Month End
+- unique_name: rg_account
+  from:
+    dataset: ds_fact_realized_gain
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: rg_security
+  from:
+    dataset: ds_fact_realized_gain
+    join_columns:
+    - SECURITY_ID
+  to:
+    dimension: Security
+    level: Security
+- unique_name: alloc_month_end
+  from:
+    dataset: ds_fact_allocation
+    join_columns:
+    - SNAPSHOT_DATE
+  to:
+    dimension: Month End Date
+    level: Month End
+- unique_name: alloc_account
+  from:
+    dataset: ds_fact_allocation
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: alloc_asset_class
+  from:
+    dataset: ds_fact_allocation
+    join_columns:
+    - ASSET_CLASS
+  to:
+    dimension: Asset Class
+    level: Asset Class
+dimensions:
+- Holding Term
+- Benchmark
+metrics:
+- unique_name: AUM
+  folder: AUM and Holdings
+- unique_name: Unrealized Gain
+  folder: Gains
+- unique_name: Position Cost Basis
+  folder: AUM and Holdings
+- unique_name: Position Quantity
+  folder: AUM and Holdings
+- unique_name: Account Ending Value
+  folder: Performance
+- unique_name: Account Beginning Value
+  folder: Performance
+- unique_name: Average Monthly Account Return
+  folder: Performance
+- unique_name: Average Monthly Benchmark Return
+  folder: Performance
+- unique_name: Benchmark Index Level
+  folder: Performance
+- unique_name: Realized Gain
+  folder: Gains
+- unique_name: Sale Proceeds
+  folder: Gains
+- unique_name: Realized Cost Basis
+  folder: Gains
+- unique_name: Lots Sold
+  folder: Gains
+- unique_name: Asset Class Market Value
+  folder: Allocation
+- unique_name: Target Allocation
+  folder: Allocation
+- unique_name: AUM Prior Quarter End
+  folder: AUM Change
+- unique_name: AUM QoQ Change
+  folder: AUM Change
+- unique_name: AUM QoQ Change Pct
+  folder: AUM Change
+- unique_name: Cash Share
+  folder: Allocation Calculations
+- unique_name: Asset Allocation
+  folder: Allocation Calculations
+- unique_name: Actual Allocation
+  folder: Allocation Calculations
+- unique_name: Allocation Drift
+  folder: Allocation Calculations
+- unique_name: Realized Gain YTD
+  folder: Gains

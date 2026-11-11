@@ -1,0 +1,14 @@
+unique_name: AUM
+object_type: metric
+label: AUM
+description: 'Assets Under Management (AUM): total market value of client holdings at a month end, in USD, the sum
+  of position market values (quantity x price). A balance: for a quarter or year it shows the last month end in
+  the period, never the sum of months. Rolls up account > household > advisor; by asset class or sector it is the
+  market value (exposure) in that slice. The book is about $19.8B at 2026-06-30.'
+dataset: ds_fact_position_snapshot
+column: MARKET_VALUE
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - pos_month_end

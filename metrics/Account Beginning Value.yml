@@ -1,0 +1,12 @@
+unique_name: Account Beginning Value
+object_type: metric
+label: Account Beginning Value
+description: 'Account value at the start of the month, USD. A balance: for a quarter or year it shows the first
+  month of the period.'
+dataset: ds_fact_account_performance
+column: BEGINNING_VALUE
+calculation_method: sum
+semi_additive:
+  position: first
+  relationships:
+  - perf_month_end

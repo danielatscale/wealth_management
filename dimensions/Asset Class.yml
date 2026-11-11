@@ -1,0 +1,21 @@
+unique_name: Asset Class
+object_type: dimension
+label: Asset Class
+type: standard
+level_attributes:
+- unique_name: Asset Class
+  label: Asset Class
+  description: 'Asset class: Equity, Fixed Income, Cash, Alternative. Shared by securities (DIM_SECURITY.ASSET_CLASS)
+    and risk-model targets (DIM_MODEL_TARGET.ASSET_CLASS), so actual and target allocation line up by asset class.'
+  dataset: ds_dim_asset_class
+  key_columns:
+  - ASSET_CLASS
+  name_column: ASSET_CLASS
+  is_unique_key: true
+hierarchies:
+- unique_name: Asset Class
+  label: Asset Class
+  filter_empty: 'yes'
+  folder: Asset Class
+  levels:
+  - unique_name: Asset Class

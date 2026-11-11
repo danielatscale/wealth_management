@@ -1,0 +1,72 @@
+unique_name: Month End Date
+object_type: dimension
+label: Month End Date
+type: time
+level_attributes:
+- unique_name: Year
+  label: Year
+  description: Calendar year, 2023 to 2026 (data runs 2023-07-31 to 2026-06-30). Balances such as AUM show the last
+    month end in the year.
+  dataset: ds_dim_date
+  key_columns:
+  - YEAR_NUM
+  name_column: YEAR_NUM
+  time_unit: year
+- unique_name: Quarter
+  label: Quarter
+  description: Year and quarter as text, e.g. 2026-Q2. Unique per quarter. Balances such as AUM show the quarter-end
+    month.
+  dataset: ds_dim_date
+  key_columns:
+  - QUARTER_NAME
+  name_column: QUARTER_NAME
+  sort_column: QUARTER_NAME
+  time_unit: quarter
+- unique_name: Month End
+  label: Month End
+  description: 'Month-end date, e.g. 2026-06-30: one member per month end, 2023-07-31 to 2026-06-30 (36 months).
+    Snapshot facts are dated on these month ends.'
+  dataset: ds_dim_date
+  key_columns:
+  - DATE_ID
+  name_column: DATE_ID
+  is_unique_key: true
+  time_unit: month
+hierarchies:
+- unique_name: Calendar
+  label: Calendar
+  filter_empty: 'yes'
+  folder: Month End Date
+  levels:
+  - unique_name: Year
+  - unique_name: Quarter
+  - unique_name: Month End
+    secondary_attributes:
+    - unique_name: Year Month
+      label: Year Month
+      description: Year and month as text, e.g. 2026-06.
+      dataset: ds_dim_date
+      name_column: YEAR_MONTH
+      key_columns:
+      - YEAR_MONTH
+    - unique_name: Month Name
+      label: Month Name
+      description: Calendar month name, January to December.
+      dataset: ds_dim_date
+      name_column: MONTH_NAME
+      key_columns:
+      - MONTH_NAME
+    - unique_name: Is Quarter End
+      label: Is Quarter End
+      description: TRUE for March, June, September and December month ends.
+      dataset: ds_dim_date
+      name_column: IS_QUARTER_END
+      key_columns:
+      - IS_QUARTER_END
+    - unique_name: Is Year End
+      label: Is Year End
+      description: TRUE for the December month end.
+      dataset: ds_dim_date
+      name_column: IS_YEAR_END
+      key_columns:
+      - IS_YEAR_END

@@ -1,0 +1,20 @@
+unique_name: ds_dim_security
+object_type: dataset
+label: Security
+connection_id: Snowflake Partner
+table: DIM_SECURITY
+columns:
+- name: SECURITY_ID
+  data_type: decimal
+- name: TICKER
+  data_type: string
+- name: SECURITY_NAME
+  data_type: string
+- name: ASSET_CLASS
+  data_type: string
+- name: SECTOR
+  data_type: string
+- name: REGION
+  data_type: string
+- name: EXPENSE_RATIO
+  data_type: decimal

@@ -1,0 +1,22 @@
+unique_name: Holding Term
+object_type: dimension
+label: Holding Term
+type: standard
+is_degenerate: true
+level_attributes:
+- unique_name: Holding Term
+  label: Holding Term
+  description: 'Holding period of a sold lot: Short (held one year or less before sale) or Long (more than one year).
+    Determines the tax rate on realized gains.'
+  dataset: ds_fact_realized_gain
+  key_columns:
+  - TERM
+  name_column: TERM
+  is_unique_key: true
+hierarchies:
+- unique_name: Holding Term
+  label: Holding Term
+  filter_empty: 'yes'
+  folder: Holding Term
+  levels:
+  - unique_name: Holding Term

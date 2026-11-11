@@ -1,0 +1,9 @@
+unique_name: Realized Gain
+object_type: metric
+label: Realized Gain
+description: 'Realized gain or loss locked in by selling: proceeds minus cost basis of the lots sold, in USD; negative
+  is a realized loss. Additive over time; dated on the month end of the sell date. Includes the December 2025 tax-loss-harvesting
+  batch (net loss of about $10.7M).'
+dataset: ds_fact_realized_gain
+column: REALIZED_GAIN
+calculation_method: sum

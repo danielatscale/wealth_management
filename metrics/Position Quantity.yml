@@ -1,0 +1,11 @@
+unique_name: Position Quantity
+object_type: metric
+label: Position Quantity
+description: 'Units held at a month end. A balance: last month end in the period; only meaningful for one security.'
+dataset: ds_fact_position_snapshot
+column: QUANTITY
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - pos_month_end

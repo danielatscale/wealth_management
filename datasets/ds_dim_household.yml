@@ -1,0 +1,18 @@
+unique_name: ds_dim_household
+object_type: dataset
+label: Household
+connection_id: Snowflake Partner
+table: DIM_HOUSEHOLD
+columns:
+- name: HOUSEHOLD_ID
+  data_type: decimal
+- name: HOUSEHOLD_NAME
+  data_type: string
+- name: SEGMENT
+  data_type: string
+- name: REGION
+  data_type: string
+- name: ADVISOR_ID
+  data_type: decimal
+- name: ACQUISITION_DATE
+  data_type: datetime

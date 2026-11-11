@@ -1,0 +1,7 @@
+unique_name: Lots Sold
+object_type: metric
+label: Lots Sold
+description: Number of sell lots (one row per lot in FACT_REALIZED_GAIN).
+dataset: ds_fact_realized_gain
+column: LOT_COUNT
+calculation_method: sum

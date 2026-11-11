@@ -1,0 +1,12 @@
+unique_name: Asset Class Market Value
+object_type: metric
+label: Asset Class Market Value
+description: 'Market value an account holds in an asset class at a month end, USD, zero when it holds none; the
+  numerator of actual allocation in the allocation-vs-target view. A balance: last month end in the period.'
+dataset: ds_fact_allocation
+column: ASSET_CLASS_MV
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - alloc_month_end

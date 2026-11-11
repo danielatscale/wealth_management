@@ -1,0 +1,8 @@
+unique_name: Realized Cost Basis
+object_type: metric
+label: Realized Cost Basis
+description: 'Cost basis of the units sold, USD: what was paid for the lots sold. Additive over time. Not the cost
+  basis of positions still held.'
+dataset: ds_fact_realized_gain
+column: COST_BASIS
+calculation_method: sum

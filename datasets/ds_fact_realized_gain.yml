@@ -1,0 +1,30 @@
+unique_name: ds_fact_realized_gain
+object_type: dataset
+label: Realized Gain
+connection_id: Snowflake Partner
+table: FACT_REALIZED_GAIN
+columns:
+- name: REALIZED_ID
+  data_type: decimal
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: SECURITY_ID
+  data_type: decimal
+- name: SELL_DATE
+  data_type: datetime
+- name: SELL_MONTH_END
+  data_type: datetime
+  sql: LAST_DAY(SELL_DATE)
+- name: QUANTITY
+  data_type: decimal
+- name: PROCEEDS
+  data_type: decimal
+- name: COST_BASIS
+  data_type: decimal
+- name: REALIZED_GAIN
+  data_type: decimal
+- name: TERM
+  data_type: string
+- name: LOT_COUNT
+  data_type: decimal
+  sql: '1'

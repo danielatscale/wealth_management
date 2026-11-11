@@ -1,0 +1,8 @@
+unique_name: Average Monthly Benchmark Return
+object_type: metric
+label: Average Monthly Benchmark Return
+description: Benchmark return for one month in percent, averaged over the months and benchmarks in view; it is the
+  typical month, not the period return. Filter to one Benchmark. The S&P 500 returned +9.3% in 2026 to June (compounded).
+dataset: ds_fact_benchmark_return
+column: MONTHLY_RETURN
+calculation_method: average

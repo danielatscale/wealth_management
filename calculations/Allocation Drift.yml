@@ -1,0 +1,8 @@
+unique_name: Allocation Drift
+object_type: metric_calc
+label: Allocation Drift
+description: 'Allocation Drift: actual asset allocation minus target allocation, per account and asset class, in
+  percentage points; positive is overweight, negative underweight. Measured at a month end. Meaningful per account
+  (or for a group as its actual minus its average target); never add drift up across accounts. About a third of
+  accounts were never rebalanced and are 10 to 21 points overweight equity.'
+expression: '[Measures].[Actual Allocation] - [Measures].[Target Allocation]'

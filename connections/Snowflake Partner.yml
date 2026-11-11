@@ -1,0 +1,6 @@
+unique_name: Snowflake Partner
+object_type: connection
+label: Snowflake Partner
+as_connection: Snowflake Partner
+database: SE_DEMO_LIBRARY
+schema: WEALTH_PORTFOLIO_NLQ

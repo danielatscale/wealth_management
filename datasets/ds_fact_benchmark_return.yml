@@ -1,0 +1,16 @@
+unique_name: ds_fact_benchmark_return
+object_type: dataset
+label: Benchmark Return
+connection_id: Snowflake Partner
+table: FACT_BENCHMARK_RETURN
+columns:
+- name: BENCHMARK_ID
+  data_type: string
+- name: BENCHMARK_NAME
+  data_type: string
+- name: SNAPSHOT_DATE
+  data_type: datetime
+- name: INDEX_LEVEL
+  data_type: decimal
+- name: MONTHLY_RETURN
+  data_type: decimal

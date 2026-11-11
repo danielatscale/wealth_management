@@ -1,0 +1,8 @@
+unique_name: ds_dim_asset_class
+object_type: dataset
+label: Asset Class
+connection_id: Snowflake Partner
+sql: SELECT DISTINCT ASSET_CLASS FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET
+columns:
+- name: ASSET_CLASS
+  data_type: string

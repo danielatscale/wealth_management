@@ -1,0 +1,7 @@
+unique_name: Realized Gain YTD
+object_type: metric_calc
+label: Realized Gain YTD
+description: 'Realized gains year to date, in USD: the sum of realized gains on lots sold since 1 January through
+  the month end in view. Compare with Unrealized Gain at the same month end.'
+expression: Aggregate(PeriodsToDate([Month End Date].[Calendar].[Year], [Month End Date].[Calendar].CurrentMember),
+  [Measures].[Realized Gain])

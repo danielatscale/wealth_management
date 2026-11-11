@@ -1,0 +1,9 @@
+unique_name: Target Allocation
+object_type: metric
+label: Target Allocation
+description: 'Target Allocation: the asset-class weight an account''s risk model aims for, in percent (85 = 85%);
+  targets sum to 100 per model. Averaged across accounts and month ends in view, so for one account and asset class
+  it is that model''s target.'
+dataset: ds_fact_allocation
+column: TARGET_PCT
+calculation_method: average

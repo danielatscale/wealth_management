@@ -1,0 +1,7 @@
+unique_name: AUM QoQ Change Pct
+object_type: metric_calc
+label: AUM QoQ Change %
+description: 'Quarter-over-Quarter AUM Change in percent: (AUM at the quarter end minus AUM at the previous quarter
+  end) / previous quarter-end AUM x 100.'
+expression: CASE WHEN ISEMPTY([Measures].[AUM Prior Quarter End]) OR [Measures].[AUM Prior Quarter End] = 0 THEN
+  NULL ELSE ([Measures].[AUM] - [Measures].[AUM Prior Quarter End]) / [Measures].[AUM Prior Quarter End] * 100 END

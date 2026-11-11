@@ -1,0 +1,8 @@
+unique_name: Actual Allocation
+object_type: metric_calc
+label: Actual Allocation %
+description: Actual allocation of an account to an asset class at a month end, in percent, from the allocation-vs-target
+  view (counts asset classes the account holds none of as 0). Compare with Target Allocation.
+expression: CASE WHEN ISEMPTY(([Asset Class].[Asset Class].[All], [Measures].[Asset Class Market Value])) OR ([Asset
+  Class].[Asset Class].[All], [Measures].[Asset Class Market Value]) = 0 THEN NULL ELSE [Measures].[Asset Class
+  Market Value] / ([Asset Class].[Asset Class].[All], [Measures].[Asset Class Market Value]) * 100 END

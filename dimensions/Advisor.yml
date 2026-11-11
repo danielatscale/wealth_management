@@ -1,0 +1,52 @@
+unique_name: Advisor
+object_type: dimension
+label: Advisor
+type: standard
+level_attributes:
+- unique_name: Advisor
+  label: Advisor
+  description: 'Financial advisor who owns the client book (60 advisors); top of the advisor > household > account
+    hierarchy. Advisor Book: all households and accounts an advisor manages; advisor AUM is the sum of their households''
+    AUM at a month end. Names are not unique (58 names across 60 advisors), so members are keyed by ADVISOR_ID.'
+  dataset: ds_dim_advisor
+  key_columns:
+  - ADVISOR_ID
+  name_column: ADVISOR_NAME
+  is_unique_key: true
+hierarchies:
+- unique_name: Advisor
+  label: Advisor
+  filter_empty: 'yes'
+  folder: Advisor
+  levels:
+  - unique_name: Advisor
+    secondary_attributes:
+    - unique_name: Advisor ID
+      label: Advisor ID
+      description: Advisor identifier (primary key). Use it to tell apart advisors who share a name.
+      dataset: ds_dim_advisor
+      name_column: ADVISOR_ID
+      key_columns:
+      - ADVISOR_ID
+    - unique_name: Advisor Office Region
+      label: Advisor Office Region
+      description: 'Region of the advisor''s office: Midwest, Northeast, Southeast, Southwest, West. Not the household''s
+        home region.'
+      dataset: ds_dim_advisor
+      name_column: OFFICE_REGION
+      key_columns:
+      - OFFICE_REGION
+    - unique_name: Advisor Tenure Years
+      label: Advisor Tenure Years
+      description: Years the advisor has been with the firm, 2 to 27.
+      dataset: ds_dim_advisor
+      name_column: TENURE_YEARS
+      key_columns:
+      - TENURE_YEARS
+    - unique_name: Advisor Is Senior
+      label: Advisor Is Senior
+      description: TRUE for senior advisors.
+      dataset: ds_dim_advisor
+      name_column: IS_SENIOR
+      key_columns:
+      - IS_SENIOR
