@@ -1,0 +1,28 @@
+unique_name: Accounts
+object_type: dataset
+label: Accounts
+connection_id: Snowflake Partner
+table: DIM_ACCOUNT
+columns:
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: HOUSEHOLD_ID
+  data_type: decimal
+- name: ACCOUNT_TYPE
+  data_type: string
+- name: REGISTRATION
+  data_type: string
+- name: RISK_MODEL
+  data_type: string
+- name: OPEN_DATE
+  data_type: date
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT
+- role: check
+  unique:
+  - ACCOUNT_ID
+  not_null:
+  - ACCOUNT_ID
+  - HOUSEHOLD_ID
+  - RISK_MODEL

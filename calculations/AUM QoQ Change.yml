@@ -1,0 +1,10 @@
+unique_name: AUM QoQ Change
+object_type: metric_calc
+label: AUM QoQ Change
+description: 'Quarter-over-quarter AUM change in USD: AUM at a quarter end minus AUM at the previous quarter end.
+  Compares two month-end balances; not a sum of the quarter months. Query by Quarter (e.g. 2026-Q2 vs 2026-Q1).'
+expression: '[Measures].[AUM] - (ParallelPeriod([Month End Date].[Calendar].[Quarter], 1, [Month End Date].[Calendar].CurrentMember),
+  [Measures].[AUM])'
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Quarter-over-Quarter AUM Change

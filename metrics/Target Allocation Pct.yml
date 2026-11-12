@@ -1,0 +1,13 @@
+unique_name: Target Allocation Pct
+object_type: metric
+label: Target Allocation Pct
+description: 'Target allocation (model weight) of the asset class in the account risk model, in percent (e.g. 85
+  = 85%); targets sum to 100 per model. Equity targets: Conservative 30, Moderate 55, Growth 70, Aggressive 85.
+  Slice by Asset Class.'
+dataset: Account Allocation
+column: TARGET_PCT
+calculation_method: average
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET.TARGET_PCT; glossary Target
+    Allocation

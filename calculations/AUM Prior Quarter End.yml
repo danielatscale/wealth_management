@@ -1,0 +1,10 @@
+unique_name: AUM Prior Quarter End
+object_type: metric_calc
+label: AUM Prior Quarter End
+description: AUM at the previous quarter end (prior quarter, last quarter AUM) in USD, for the quarter or month
+  end in context; base for the quarter-over-quarter AUM change.
+expression: (ParallelPeriod([Month End Date].[Calendar].[Quarter], 1, [Month End Date].[Calendar].CurrentMember),
+  [Measures].[AUM])
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Quarter-over-Quarter AUM Change

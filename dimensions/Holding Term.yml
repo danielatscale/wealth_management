@@ -1,0 +1,28 @@
+unique_name: Holding Term
+object_type: dimension
+label: Holding Term
+type: standard
+is_degenerate: true
+level_attributes:
+- unique_name: Holding Term
+  label: Holding Term
+  description: 'Holding term (holding period) of a sold lot: Short (short-term, held one year or less) or Long (long-term,
+    more than one year). Determines the tax rate on realized gains.'
+  dataset: Realized Gain Lots
+  key_columns:
+  - TERM
+  name_column: TERM
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN.TERM; glossary Holding
+      Term
+hierarchies:
+- unique_name: Holding Term Hierarchy
+  label: Holding Term
+  filter_empty: 'yes'
+  folder: Realized Gains
+  levels:
+  - unique_name: Holding Term
+ai_context:
+- source_type: catalog
+  source: Horizon SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ

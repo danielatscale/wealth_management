@@ -1,0 +1,10 @@
+unique_name: Lots Sold
+object_type: metric
+label: Lots Sold
+description: Number of sell lots (sale transactions) realized.
+dataset: Realized Gain Lots
+column: LOT_COUNT
+calculation_method: sum
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN

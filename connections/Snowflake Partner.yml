@@ -1,0 +1,11 @@
+unique_name: Snowflake Partner
+object_type: connection
+label: Snowflake Partner
+as_connection: Snowflake Partner
+database: SE_DEMO_LIBRARY
+schema: WEALTH_PORTFOLIO_NLQ
+ai_context:
+- source_type: warehouse
+  source: AtScale connectionId "Snowflake Partner"
+  notes:
+  - Snowflake SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ; unquoted UPPERCASE identifiers.

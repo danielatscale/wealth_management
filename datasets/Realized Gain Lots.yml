@@ -1,0 +1,46 @@
+unique_name: Realized Gain Lots
+object_type: dataset
+label: Realized Gain Lots
+connection_id: Snowflake Partner
+sql: SELECT r.REALIZED_ID, r.ACCOUNT_ID, r.SECURITY_ID, s.ASSET_CLASS, r.SELL_DATE, LAST_DAY(r.SELL_DATE) AS SELL_MONTH_END,
+  r.QUANTITY, r.PROCEEDS, r.COST_BASIS, r.REALIZED_GAIN, r.TERM, 1 AS LOT_COUNT FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN
+  r JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY s ON s.SECURITY_ID = r.SECURITY_ID
+columns:
+- name: REALIZED_ID
+  data_type: decimal
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: SECURITY_ID
+  data_type: decimal
+- name: ASSET_CLASS
+  data_type: string
+- name: SELL_DATE
+  data_type: date
+- name: SELL_MONTH_END
+  data_type: date
+- name: QUANTITY
+  data_type: decimal
+- name: PROCEEDS
+  data_type: decimal
+- name: COST_BASIS
+  data_type: decimal
+- name: REALIZED_GAIN
+  data_type: decimal
+- name: TERM
+  data_type: string
+- name: LOT_COUNT
+  data_type: int
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN.SELL_DATE
+  notes:
+  - SELL_MONTH_END = LAST_DAY(SELL_DATE) joins the monthly calendar, per the SELL_DATE comment (tax-loss harvest
+    is dated 2025-12-18). Verified 0 orphans.
+- role: check
+  unique:
+  - REALIZED_ID
+  not_null:
+  - REALIZED_ID
+  - SELL_MONTH_END
+  - ACCOUNT_ID
+  - SECURITY_ID

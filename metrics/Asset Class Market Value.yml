@@ -1,0 +1,15 @@
+unique_name: Asset Class Market Value
+object_type: metric
+label: Asset Class Market Value
+description: Market value held in an asset class at a month end, USD, from the account allocation view (0 for classes
+  an account does not hold). Numerator of Asset Allocation Pct; slice by Asset Class.
+dataset: Account Allocation
+column: CLASS_MARKET_VALUE
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Allocation to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Asset Allocation, Allocation Drift, Target Allocation

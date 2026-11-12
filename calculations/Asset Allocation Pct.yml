@@ -1,0 +1,11 @@
+unique_name: Asset Allocation Pct
+object_type: metric_calc
+label: Asset Allocation Pct
+description: 'Asset allocation (actual allocation, portfolio weight) in percent: share of an account or book market
+  value in an asset class at a month end, market value in the class / total market value x 100. Slice by Asset Class.
+  Not the target allocation.'
+expression: CASE WHEN [Measures].[Account Total Market Value] = 0 THEN NULL ELSE [Measures].[Asset Class Market
+  Value] / [Measures].[Account Total Market Value] * 100 END
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Asset Allocation

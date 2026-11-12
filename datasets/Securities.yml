@@ -1,0 +1,29 @@
+unique_name: Securities
+object_type: dataset
+label: Securities
+connection_id: Snowflake Partner
+table: DIM_SECURITY
+columns:
+- name: SECURITY_ID
+  data_type: decimal
+- name: TICKER
+  data_type: string
+- name: SECURITY_NAME
+  data_type: string
+- name: ASSET_CLASS
+  data_type: string
+- name: SECTOR
+  data_type: string
+- name: REGION
+  data_type: string
+- name: EXPENSE_RATIO
+  data_type: double
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY
+- role: check
+  unique:
+  - SECURITY_ID
+  not_null:
+  - SECURITY_ID
+  - ASSET_CLASS

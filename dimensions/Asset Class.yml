@@ -1,0 +1,28 @@
+unique_name: Asset Class
+object_type: dimension
+label: Asset Class
+type: standard
+level_attributes:
+- unique_name: Asset Class
+  label: Asset Class
+  description: 'Asset class: Equity, Fixed Income, Cash, Alternative. Shared by holdings (via the security), realized
+    lots and target allocations, so it slices AUM, cash, allocation and drift alike.'
+  dataset: Asset Classes
+  key_columns:
+  - ASSET_CLASS
+  name_column: ASSET_CLASS
+  is_unique_key: true
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY.ASSET_CLASS; Horizon column
+      comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET.ASSET_CLASS
+hierarchies:
+- unique_name: Asset Class Hierarchy
+  label: Asset Class
+  filter_empty: 'yes'
+  folder: Security
+  levels:
+  - unique_name: Asset Class
+ai_context:
+- source_type: catalog
+  source: Horizon SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ

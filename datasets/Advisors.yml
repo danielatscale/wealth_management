@@ -1,0 +1,23 @@
+unique_name: Advisors
+object_type: dataset
+label: Advisors
+connection_id: Snowflake Partner
+table: DIM_ADVISOR
+columns:
+- name: ADVISOR_ID
+  data_type: decimal
+- name: ADVISOR_NAME
+  data_type: string
+- name: OFFICE_REGION
+  data_type: string
+- name: TENURE_YEARS
+  data_type: decimal
+- name: IS_SENIOR
+  data_type: boolean
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR
+- role: check
+  unique: &id001
+  - ADVISOR_ID
+  not_null: *id001

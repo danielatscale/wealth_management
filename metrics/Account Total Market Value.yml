@@ -1,0 +1,15 @@
+unique_name: Account Total Market Value
+object_type: metric
+label: Account Total Market Value
+description: Total account market value repeated on each asset-class row of the allocation view, USD; denominator
+  of Asset Allocation Pct. Only meaningful sliced by Asset Class (otherwise counted once per class).
+dataset: Account Allocation
+column: ACCOUNT_MARKET_VALUE
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Allocation to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Asset Allocation, Allocation Drift, Target Allocation

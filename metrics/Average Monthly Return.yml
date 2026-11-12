@@ -1,0 +1,12 @@
+unique_name: Average Monthly Return
+object_type: metric
+label: Average Monthly Return
+description: 'Average monthly return of accounts in percent (e.g. -2.13 = -2.13%), excluding flows: the typical
+  month, not the period return (compound monthly returns for that). Not the benchmark return.'
+dataset: Account Performance
+column: MONTHLY_RETURN
+calculation_method: average
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_ACCOUNT_PERFORMANCE.MONTHLY_RETURN; glossary
+    Monthly Return

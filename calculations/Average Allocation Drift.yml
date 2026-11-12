@@ -1,0 +1,11 @@
+unique_name: Average Allocation Drift
+object_type: metric_calc
+label: Average Allocation Drift
+description: 'Average allocation drift across accounts in percentage points at a month end: mean of per-account
+  actual minus target allocation, by asset class. The glossary-sanctioned group view of drift (about a third of
+  accounts were never rebalanced and are 10 to 21 points overweight equity).'
+expression: CASE WHEN [Measures].[Allocation Account Count] = 0 THEN NULL ELSE [Measures].[Allocation Drift Points
+  Total] / [Measures].[Allocation Account Count] END
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Allocation Drift

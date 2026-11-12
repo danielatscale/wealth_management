@@ -1,0 +1,10 @@
+unique_name: Cash Share
+object_type: metric_calc
+label: Cash Share
+description: 'Cash share (cash allocation, cash sweep share) in percent: share of total client assets held in cash
+  at a month end, cash market value / AUM x 100. Ratio of totals, not an average of account ratios.'
+expression: CASE WHEN [Measures].[AUM] = 0 THEN NULL ELSE [Measures].[Cash Market Value] / [Measures].[AUM] * 100
+  END
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Cash Share

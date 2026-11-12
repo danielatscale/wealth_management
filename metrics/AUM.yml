@@ -1,0 +1,18 @@
+unique_name: AUM
+object_type: metric
+label: AUM
+description: 'Assets under management (AUM, total market value of client holdings, book size) in USD: the sum of
+  position market values at one month end. A balance: a quarter or year shows its last month end, never the sum
+  of months. Rolls up account > household > advisor; the book is about $19.8B at 2026-06-30. Primary AUM measure;
+  Ending Value is the alternative from account performance.'
+dataset: Position Snapshots
+column: MARKET_VALUE
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Positions to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT.MARKET_VALUE; glossary
+    Assets Under Management (AUM), Market Value

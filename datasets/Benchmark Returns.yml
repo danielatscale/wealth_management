@@ -1,0 +1,24 @@
+unique_name: Benchmark Returns
+object_type: dataset
+label: Benchmark Returns
+connection_id: Snowflake Partner
+table: FACT_BENCHMARK_RETURN
+columns:
+- name: BENCHMARK_ID
+  data_type: string
+- name: BENCHMARK_NAME
+  data_type: string
+- name: SNAPSHOT_DATE
+  data_type: date
+- name: INDEX_LEVEL
+  data_type: decimal
+- name: MONTHLY_RETURN
+  data_type: double
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_BENCHMARK_RETURN
+- role: check
+  unique: &id001
+  - BENCHMARK_ID
+  - SNAPSHOT_DATE
+  not_null: *id001

@@ -1,0 +1,12 @@
+unique_name: AUM QoQ Change Pct
+object_type: metric_calc
+label: AUM QoQ Change Pct
+description: 'Quarter-over-quarter AUM change in percent: (AUM at the quarter end - AUM at the previous quarter
+  end) / previous quarter-end AUM x 100. Percent form of AUM QoQ Change.'
+expression: CASE WHEN ISEMPTY((ParallelPeriod([Month End Date].[Calendar].[Quarter], 1, [Month End Date].[Calendar].CurrentMember),
+  [Measures].[AUM])) THEN NULL ELSE ([Measures].[AUM] - (ParallelPeriod([Month End Date].[Calendar].[Quarter], 1,
+  [Month End Date].[Calendar].CurrentMember), [Measures].[AUM])) / (ParallelPeriod([Month End Date].[Calendar].[Quarter],
+  1, [Month End Date].[Calendar].CurrentMember), [Measures].[AUM]) * 100 END
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Quarter-over-Quarter AUM Change

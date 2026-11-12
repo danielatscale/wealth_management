@@ -1,0 +1,10 @@
+unique_name: Units Sold
+object_type: metric
+label: Units Sold
+description: Units (shares) sold in realized lots. Not Units Held.
+dataset: Realized Gain Lots
+column: QUANTITY
+calculation_method: sum
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN.QUANTITY

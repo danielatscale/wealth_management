@@ -1,0 +1,15 @@
+unique_name: Benchmark Index Level
+object_type: metric
+label: Benchmark Index Level
+description: Benchmark index level at the month end; a level, not additive - read it per benchmark, last month end
+  in a period.
+dataset: Benchmark Returns
+column: INDEX_LEVEL
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Benchmarks to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_BENCHMARK_RETURN.INDEX_LEVEL

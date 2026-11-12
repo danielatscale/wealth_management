@@ -1,0 +1,10 @@
+unique_name: Unrealized Gain Change YTD
+object_type: metric_calc
+label: Unrealized Gain Change YTD
+description: 'Year-to-date change in unrealized gain in USD: unrealized gain at the month end in context minus unrealized
+  gain at the prior year end (December). Use Unrealized Gain itself for the balance at a date; not realized gain.'
+expression: '[Measures].[Unrealized Gain] - (Ancestor([Month End Date].[Calendar].CurrentMember, [Month End Date].[Calendar].[Year]).PrevMember,
+  [Measures].[Unrealized Gain])'
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Unrealized Gain

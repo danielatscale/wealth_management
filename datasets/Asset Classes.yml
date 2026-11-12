@@ -1,0 +1,18 @@
+unique_name: Asset Classes
+object_type: dataset
+label: Asset Classes
+connection_id: Snowflake Partner
+sql: SELECT DISTINCT ASSET_CLASS FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET
+columns:
+- name: ASSET_CLASS
+  data_type: string
+ai_context:
+- source_type: catalog
+  source: Horizon column comments SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET.ASSET_CLASS and DIM_SECURITY.ASSET_CLASS
+  notes:
+  - Conformed asset-class list (Equity, Fixed Income, Cash, Alternative) shared by positions, realized lots and
+    allocation targets.
+- role: check
+  unique: &id001
+  - ASSET_CLASS
+  not_null: *id001

@@ -1,0 +1,10 @@
+unique_name: Proceeds
+object_type: metric
+label: Proceeds
+description: Sale proceeds of lots sold, USD.
+dataset: Realized Gain Lots
+column: PROCEEDS
+calculation_method: sum
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN.PROCEEDS

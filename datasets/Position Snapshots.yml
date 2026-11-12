@@ -1,0 +1,45 @@
+unique_name: Position Snapshots
+object_type: dataset
+label: Position Snapshots
+connection_id: Snowflake Partner
+sql: SELECT p.POSITION_ID, p.SNAPSHOT_DATE, p.ACCOUNT_ID, p.SECURITY_ID, s.ASSET_CLASS, p.QUANTITY, p.PRICE, p.MARKET_VALUE,
+  p.COST_BASIS, p.UNREALIZED_GAIN, IFF(s.ASSET_CLASS = 'Cash', p.MARKET_VALUE, 0) AS CASH_MARKET_VALUE FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT
+  p JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY s ON s.SECURITY_ID = p.SECURITY_ID
+columns:
+- name: POSITION_ID
+  data_type: decimal
+- name: SNAPSHOT_DATE
+  data_type: date
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: SECURITY_ID
+  data_type: decimal
+- name: ASSET_CLASS
+  data_type: string
+- name: QUANTITY
+  data_type: decimal
+- name: PRICE
+  data_type: decimal
+- name: MARKET_VALUE
+  data_type: decimal
+- name: COST_BASIS
+  data_type: decimal
+- name: UNREALIZED_GAIN
+  data_type: decimal
+- name: CASH_MARKET_VALUE
+  data_type: decimal
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT
+  notes:
+  - FACT_POSITION_SNAPSHOT plus ASSET_CLASS from DIM_SECURITY (so positions conform to the Asset Class dimension)
+    and CASH_MARKET_VALUE, the numerator of the glossary term Cash Share.
+- role: check
+  unique:
+  - POSITION_ID
+  not_null:
+  - POSITION_ID
+  - SNAPSHOT_DATE
+  - ACCOUNT_ID
+  - SECURITY_ID
+  - ASSET_CLASS

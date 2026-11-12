@@ -1,0 +1,12 @@
+unique_name: Benchmark Average Monthly Return
+object_type: metric
+label: Benchmark Average Monthly Return
+description: 'Benchmark (S&P 500, Bloomberg US Aggregate Bond, 60/40 blend) average monthly return in percent: the
+  typical month, not the period return. Not the account return.'
+dataset: Benchmark Returns
+column: MONTHLY_RETURN
+calculation_method: average
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_BENCHMARK_RETURN.MONTHLY_RETURN; glossary
+    Monthly Return, Benchmark

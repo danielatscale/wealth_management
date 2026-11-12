@@ -1,0 +1,16 @@
+unique_name: Position Cost Basis
+object_type: metric
+label: Position Cost Basis
+description: 'Cost basis of holdings: total cost of the units held, USD, at a month end. A balance, last month end
+  in a period. Not the cost basis of lots sold (Realized Cost Basis).'
+dataset: Position Snapshots
+column: COST_BASIS
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Positions to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT.COST_BASIS; glossary
+    Cost Basis

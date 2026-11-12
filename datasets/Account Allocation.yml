@@ -1,0 +1,41 @@
+unique_name: Account Allocation
+object_type: dataset
+label: Account Allocation
+connection_id: Snowflake Partner
+sql: SELECT SNAPSHOT_DATE, ACCOUNT_ID, ASSET_CLASS, TARGET_PCT, CLASS_MARKET_VALUE, ACCOUNT_MARKET_VALUE, CLASS_MARKET_VALUE
+  / NULLIF(ACCOUNT_MARKET_VALUE, 0) * 100 - TARGET_PCT AS DRIFT_PCT, 1 AS ALLOCATION_ROW_COUNT FROM (SELECT p.SNAPSHOT_DATE,
+  p.ACCOUNT_ID, t.ASSET_CLASS, t.TARGET_PCT, SUM(IFF(s.ASSET_CLASS = t.ASSET_CLASS, p.MARKET_VALUE, 0)) AS CLASS_MARKET_VALUE,
+  SUM(p.MARKET_VALUE) AS ACCOUNT_MARKET_VALUE FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT p
+  JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY s ON s.SECURITY_ID = p.SECURITY_ID JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT
+  a ON a.ACCOUNT_ID = p.ACCOUNT_ID JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET t ON t.MODEL = a.RISK_MODEL
+  GROUP BY p.SNAPSHOT_DATE, p.ACCOUNT_ID, t.ASSET_CLASS, t.TARGET_PCT) x
+columns:
+- name: SNAPSHOT_DATE
+  data_type: date
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: ASSET_CLASS
+  data_type: string
+- name: TARGET_PCT
+  data_type: double
+- name: CLASS_MARKET_VALUE
+  data_type: decimal
+- name: ACCOUNT_MARKET_VALUE
+  data_type: decimal
+- name: DRIFT_PCT
+  data_type: double
+- name: ALLOCATION_ROW_COUNT
+  data_type: int
+ai_context:
+- source_type: catalog
+  source: 'Horizon glossary: Allocation Drift, Asset Allocation, Target Allocation; table comment DIM_MODEL_TARGET'
+  notes:
+  - 'One row per month end, account and asset class (all 4 classes of the account risk model, 0 when not held),
+    carrying DIM_MODEL_TARGET.TARGET_PCT via RISK_MODEL = MODEL. DRIFT_PCT is the per-account drift the glossary
+    says to average, never sum. Verified unique: 477,360 rows.'
+- role: check
+  unique: &id001
+  - SNAPSHOT_DATE
+  - ACCOUNT_ID
+  - ASSET_CLASS
+  not_null: *id001

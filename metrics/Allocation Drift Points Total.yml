@@ -1,0 +1,15 @@
+unique_name: Allocation Drift Points Total
+object_type: metric
+label: Allocation Drift Points Total
+description: Sum of per-account allocation drift in percentage points at a month end; numerator of Average Allocation
+  Drift only - never read as a total drift.
+dataset: Account Allocation
+column: DRIFT_PCT
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Allocation to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Asset Allocation, Allocation Drift, Target Allocation

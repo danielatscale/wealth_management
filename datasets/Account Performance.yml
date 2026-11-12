@@ -1,0 +1,33 @@
+unique_name: Account Performance
+object_type: dataset
+label: Account Performance
+connection_id: Snowflake Partner
+table: FACT_ACCOUNT_PERFORMANCE
+columns:
+- name: PERF_ID
+  data_type: decimal
+- name: SNAPSHOT_DATE
+  data_type: date
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: BEGINNING_VALUE
+  data_type: decimal
+- name: NET_FLOW
+  data_type: decimal
+- name: ENDING_VALUE
+  data_type: decimal
+- name: MONTHLY_RETURN
+  data_type: double
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_ACCOUNT_PERFORMANCE
+  notes:
+  - 'NET_FLOW kept as a column but not published as a metric: Horizon says it is always 0 and Net New Assets is
+    not available.'
+- role: check
+  unique:
+  - PERF_ID
+  not_null:
+  - PERF_ID
+  - SNAPSHOT_DATE
+  - ACCOUNT_ID

@@ -1,0 +1,10 @@
+unique_name: Realized Gain YTD
+object_type: metric_calc
+label: Realized Gain YTD
+description: 'Realized gains year to date (YTD) in USD: realized gain of lots sold since 1 January through the month
+  end in context, calendar year. Not unrealized gain.'
+expression: Aggregate(PeriodsToDate([Month End Date].[Calendar].[Year], [Month End Date].[Calendar].CurrentMember),
+  [Measures].[Realized Gain])
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Realized Gain

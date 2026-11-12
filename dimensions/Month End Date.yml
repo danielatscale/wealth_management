@@ -1,0 +1,121 @@
+unique_name: Month End Date
+object_type: dimension
+label: Month End Date
+type: time
+level_attributes:
+- unique_name: Year
+  label: Year
+  description: Calendar year, 2023 to 2026, of the month-end calendar.
+  dataset: Month End Calendar
+  key_columns:
+  - YEAR_NUM
+  name_column: YEAR_NUM
+  time_unit: year
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.YEAR_NUM
+- unique_name: Quarter
+  label: Quarter
+  description: Calendar quarter as text, e.g. 2026-Q2 (unique per quarter). A quarter balance is its last month
+    end (e.g. 2026-Q2 = 2026-06-30).
+  dataset: Month End Calendar
+  key_columns:
+  - QUARTER_NAME
+  name_column: QUARTER_NAME
+  sort_column: QUARTER_NAME
+  time_unit: quarter
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.QUARTER_NAME
+- unique_name: Month End
+  label: Month End
+  description: Month-end date (snapshot date), e.g. 2026-06-30; one per month, 2023-07-31 to 2026-06-30 (36 month
+    ends). Realized lots map to the month end of their sell date.
+  dataset: Month End Calendar
+  key_columns:
+  - DATE_ID
+  name_column: DATE_ID
+  sort_column: DATE_ID
+  is_unique_key: true
+  time_unit: month
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.DATE_ID
+hierarchies:
+- unique_name: Calendar
+  label: Calendar
+  filter_empty: 'yes'
+  folder: Month End Date
+  levels:
+  - unique_name: Year
+  - unique_name: Quarter
+    secondary_attributes:
+    - unique_name: Quarter Number
+      label: Quarter Number
+      description: Calendar quarter number within the year, 1 to 4.
+      dataset: Month End Calendar
+      name_column: QUARTER_NUM
+      key_columns:
+      - QUARTER_NUM
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.QUARTER_NUM
+  - unique_name: Month End
+    secondary_attributes:
+    - unique_name: Year Month
+      label: Year Month
+      description: Year and month as text, e.g. 2026-06.
+      dataset: Month End Calendar
+      name_column: YEAR_MONTH
+      key_columns:
+      - YEAR_MONTH
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.YEAR_MONTH
+    - unique_name: Month Name
+      label: Month Name
+      description: Calendar month name, January to December.
+      dataset: Month End Calendar
+      name_column: MONTH_NAME
+      key_columns:
+      - MONTH_NAME
+      sort_column: MONTH_NUM
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.MONTH_NAME
+    - unique_name: Month Number
+      label: Month Number
+      description: Calendar month number, 1 to 12.
+      dataset: Month End Calendar
+      name_column: MONTH_NUM
+      key_columns:
+      - MONTH_NUM
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.MONTH_NUM
+    - unique_name: Is Quarter End
+      label: Is Quarter End
+      description: 'Quarter-end flag: TRUE for March, June, September and December month ends.'
+      dataset: Month End Calendar
+      name_column: IS_QUARTER_END
+      key_columns:
+      - IS_QUARTER_END
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.IS_QUARTER_END
+    - unique_name: Is Year End
+      label: Is Year End
+      description: 'Year-end flag: TRUE for the December month end.'
+      dataset: Month End Calendar
+      name_column: IS_YEAR_END
+      key_columns:
+      - IS_YEAR_END
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE.IS_YEAR_END
+ai_context:
+- source_type: catalog
+  source: Horizon table comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_DATE
+  notes:
+  - Monthly calendar, one row per month end; every fact joins on its month end, so one conformed time dimension
+    (no role-play) serves balances, flows and benchmarks.

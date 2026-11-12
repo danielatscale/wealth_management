@@ -1,0 +1,71 @@
+unique_name: Security
+object_type: dimension
+label: Security
+type: standard
+level_attributes:
+- unique_name: Security
+  label: Security
+  description: Security (holding, instrument) held in client accounts, by security name (unique per security); classified
+    by asset class, sector and region.
+  dataset: Securities
+  key_columns:
+  - SECURITY_ID
+  name_column: SECURITY_NAME
+  is_unique_key: true
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY.SECURITY_NAME
+hierarchies:
+- unique_name: Security Hierarchy
+  label: Security
+  filter_empty: 'yes'
+  folder: Security
+  levels:
+  - unique_name: Security
+    secondary_attributes:
+    - unique_name: Ticker
+      label: Ticker
+      description: Ticker symbol (synthetic), unique per security.
+      dataset: Securities
+      name_column: TICKER
+      key_columns:
+      - TICKER
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY.TICKER
+    - unique_name: Sector
+      label: Sector
+      description: GICS sector for equities (Communication Services, Consumer Discretionary, Consumer Staples, Energy,
+        Financials, Health Care, Industrials, Technology, Utilities); '-' for non-equity securities, so a sector
+        is only meaningful within the Equity asset class. Use for sector exposure.
+      dataset: Securities
+      name_column: SECTOR
+      key_columns:
+      - SECTOR
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY.SECTOR; glossary Sector
+          Exposure
+    - unique_name: Issuer Region
+      label: Issuer Region
+      description: 'Issuer region of the security: US or International. Not a client or office region.'
+      dataset: Securities
+      name_column: REGION
+      key_columns:
+      - REGION
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY.REGION
+    - unique_name: Expense Ratio
+      label: Expense Ratio
+      description: Annual expense ratio in percent (0 to 1.08; 0.75 means 0.75% a year). 0 for single stocks.
+      dataset: Securities
+      name_column: EXPENSE_RATIO
+      key_columns:
+      - EXPENSE_RATIO
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_SECURITY.EXPENSE_RATIO
+ai_context:
+- source_type: catalog
+  source: Horizon SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ

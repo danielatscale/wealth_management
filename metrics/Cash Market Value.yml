@@ -1,0 +1,15 @@
+unique_name: Cash Market Value
+object_type: metric
+label: Cash Market Value
+description: 'Cash holdings (cash sweep) market value in USD at a month end: AUM held in the Cash asset class. Numerator
+  of Cash Share; a balance, last month end in a period.'
+dataset: Position Snapshots
+column: CASH_MARKET_VALUE
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Positions to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Cash Share

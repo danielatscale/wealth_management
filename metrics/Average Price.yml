@@ -1,0 +1,11 @@
+unique_name: Average Price
+object_type: metric
+label: Average Price
+description: Average price per unit at the month end, USD, across the positions in scope (simple average of position
+  prices); meaningful per security and month end.
+dataset: Position Snapshots
+column: PRICE
+calculation_method: average
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT.PRICE

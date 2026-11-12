@@ -1,0 +1,15 @@
+unique_name: Allocation Account Count
+object_type: metric
+label: Allocation Account Count
+description: Number of account and asset-class rows at a month end in the allocation view (accounts counted once
+  per asset class); denominator of Average Allocation Drift.
+dataset: Account Allocation
+column: ALLOCATION_ROW_COUNT
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Allocation to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon glossary Asset Allocation, Allocation Drift, Target Allocation

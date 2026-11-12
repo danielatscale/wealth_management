@@ -1,0 +1,17 @@
+unique_name: Unrealized Gain
+object_type: metric
+label: Unrealized Gain
+description: 'Unrealized gain or loss on positions still held (paper gain): market value minus cost basis at a month
+  end, USD; negative is an unrealized loss. A balance, never summed across months (last month end in a period).
+  About $3.3B across the book at 2026-06-30. Not Realized Gain, which is locked in by selling.'
+dataset: Position Snapshots
+column: UNREALIZED_GAIN
+calculation_method: sum
+semi_additive:
+  position: last
+  relationships:
+  - Positions to Month End
+ai_context:
+- source_type: catalog
+  source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT.UNREALIZED_GAIN; glossary
+    Unrealized Gain

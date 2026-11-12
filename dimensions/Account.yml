@@ -1,0 +1,86 @@
+unique_name: Account
+object_type: dimension
+label: Account
+type: standard
+level_attributes:
+- unique_name: Account
+  label: Account
+  description: Client account identifier (account ID). Each account belongs to one household and follows one target
+    risk model; bottom of the advisor > household > account rollup.
+  dataset: Accounts
+  key_columns:
+  - ACCOUNT_ID
+  name_column: ACCOUNT_ID
+  is_unique_key: true
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT.ACCOUNT_ID
+hierarchies:
+- unique_name: Account Hierarchy
+  label: Account
+  filter_empty: 'yes'
+  folder: Account
+  levels:
+  - unique_name: Account
+    secondary_attributes:
+    - unique_name: Account Type
+      label: Account Type
+      description: 'Account type: Brokerage, Traditional IRA, Roth IRA, 401(k) Rollover, Trust. Not the ownership
+        registration.'
+      dataset: Accounts
+      name_column: ACCOUNT_TYPE
+      key_columns:
+      - ACCOUNT_TYPE
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT.ACCOUNT_TYPE
+    - unique_name: Account Registration
+      label: Account Registration
+      description: 'Account registration (ownership): Individual, Joint (JTWROS), Custodial, Trust.'
+      dataset: Accounts
+      name_column: REGISTRATION
+      key_columns:
+      - REGISTRATION
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT.REGISTRATION
+    - unique_name: Risk Model
+      label: Risk Model
+      description: 'Target risk model (investment profile) the account is managed to: Conservative, Moderate, Growth
+        or Aggressive, from least to most equity. Determines the target allocation used for allocation drift.'
+      dataset: Accounts
+      name_column: RISK_MODEL
+      key_columns:
+      - RISK_MODEL
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT.RISK_MODEL; glossary Risk
+          Model
+    - unique_name: Account Open Date
+      label: Account Open Date
+      description: Date the account was opened.
+      dataset: Accounts
+      name_column: OPEN_DATE
+      key_columns:
+      - OPEN_DATE
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT.OPEN_DATE
+relationships:
+- unique_name: Account to Household
+  from:
+    hierarchy: Account Hierarchy
+    level: Account
+    dataset: Accounts
+    join_columns:
+    - HOUSEHOLD_ID
+  to:
+    dimension: Household
+    level: Household
+  type: embedded
+ai_context:
+- source_type: catalog
+  source: Horizon SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ
+  notes:
+  - Embedded to Household via FK_DIM_ACCOUNT_HOUSEHOLD_ID, giving the advisor > household > account rollup from
+    the glossary.

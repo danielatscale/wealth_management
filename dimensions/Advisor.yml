@@ -1,0 +1,71 @@
+unique_name: Advisor
+object_type: dimension
+label: Advisor
+type: standard
+level_attributes:
+- unique_name: Advisor
+  label: Advisor
+  description: 'Financial advisor who owns the client book (advisor book): all households and accounts an advisor
+    manages; Advisor AUM is the sum of their households'' AUM at a month end. Advisor names are not unique (58 names
+    across 60 advisors), so list by advisor ID, not name. Top of the advisor > household > account rollup.'
+  dataset: Advisors
+  key_columns:
+  - ADVISOR_ID
+  name_column: ADVISOR_NAME
+  is_unique_key: true
+  ai_context:
+  - source_type: catalog
+    source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.ADVISOR_NAME; glossary Advisor
+      Book
+hierarchies:
+- unique_name: Advisor Hierarchy
+  label: Advisor
+  filter_empty: 'yes'
+  folder: Advisor
+  levels:
+  - unique_name: Advisor
+    secondary_attributes:
+    - unique_name: Advisor ID
+      label: Advisor ID
+      description: Advisor identifier (primary key); use it to tell apart advisors who share a name.
+      dataset: Advisors
+      name_column: ADVISOR_ID
+      key_columns:
+      - ADVISOR_ID
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.ADVISOR_ID
+    - unique_name: Advisor Office Region
+      label: Advisor Office Region
+      description: 'Region of the advisor''s office: Midwest, Northeast, Southeast, Southwest, West. Not the household''s
+        home region (Household Region).'
+      dataset: Advisors
+      name_column: OFFICE_REGION
+      key_columns:
+      - OFFICE_REGION
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.OFFICE_REGION
+    - unique_name: Advisor Tenure Years
+      label: Advisor Tenure Years
+      description: Years the advisor has been with the firm, 2 to 27.
+      dataset: Advisors
+      name_column: TENURE_YEARS
+      key_columns:
+      - TENURE_YEARS
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.TENURE_YEARS
+    - unique_name: Advisor Is Senior
+      label: Advisor Is Senior
+      description: 'Senior advisor flag: TRUE for senior advisors.'
+      dataset: Advisors
+      name_column: IS_SENIOR
+      key_columns:
+      - IS_SENIOR
+      ai_context:
+      - source_type: catalog
+        source: Horizon column comment SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.IS_SENIOR
+ai_context:
+- source_type: catalog
+  source: Horizon SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ
