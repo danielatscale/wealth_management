@@ -29,4 +29,6 @@ ai_context:
       columns are unquoted, so their names are UPPERCASE; use UPPERCASE table and column names in every dataset.
       A derived (sql:) dataset is not resolved against the connection's database and schema, so qualify every
       table in it as SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.<TABLE>. Do not read any other schema's tables, and do
-      not read any existing AtScale model or catalog: build from Horizon and the warehouse only.
+      not read any existing AtScale model or catalog: build from Horizon and the warehouse only. Publishing: when asked to publish or deploy the model, only publish it and report that it
+      is published. Do not then run test queries or the business questions (no list_models, run_query or other
+      query tools) unless the user explicitly asks for queries in a later message.
