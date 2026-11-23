@@ -1,0 +1,180 @@
+unique_name: Wealth Portfolio
+object_type: model
+label: Wealth Portfolio
+description: 'Wealth management advisory book: AUM, asset allocation vs risk-model targets, cash share, unrealized
+  and realized gains, account and benchmark returns. Grain: month-end position snapshots (one row per account, security
+  and month end), plus monthly account performance, realized sell lots and benchmark returns. Dimensions: Month
+  End calendar, Advisor > Household > Account, Security, Asset Class, Holding Term, Benchmark.'
+dimensions:
+- Holding Term
+- Sell Date
+- Benchmark
+metrics:
+- unique_name: AUM
+  folder: Position Measures
+- unique_name: Cost Basis
+  folder: Position Measures
+- unique_name: Unrealized Gain
+  folder: Position Measures
+- unique_name: Quantity Held
+  folder: Position Measures
+- unique_name: Position Count
+  folder: Position Measures
+- unique_name: Average Price
+  folder: Position Measures
+- unique_name: Account Ending Value
+  folder: Performance Measures
+- unique_name: Account Beginning Value
+  folder: Performance Measures
+- unique_name: Net Flow
+  folder: Performance Measures
+- unique_name: Account Monthly Return
+  folder: Performance Measures
+- unique_name: Realized Gain
+  folder: Realized Gain Measures
+- unique_name: Proceeds
+  folder: Realized Gain Measures
+- unique_name: Realized Cost Basis
+  folder: Realized Gain Measures
+- unique_name: Quantity Sold
+  folder: Realized Gain Measures
+- unique_name: Lot Count
+  folder: Realized Gain Measures
+- unique_name: Benchmark Monthly Return
+  folder: Benchmark Measures
+- unique_name: Benchmark Index Level
+  folder: Benchmark Measures
+- unique_name: Target Allocation
+  folder: Target Allocation Measures
+- unique_name: AUM Prior Quarter End
+  folder: AUM Change
+- unique_name: AUM QoQ Change
+  folder: AUM Change
+- unique_name: AUM QoQ Change Pct
+  folder: AUM Change
+- unique_name: Asset Allocation
+  folder: Allocation
+- unique_name: Cash Share
+  folder: Allocation
+- unique_name: Allocation Drift
+  folder: Allocation
+- unique_name: Realized Gain YTD
+  folder: Gains and Returns
+- unique_name: Account YTD Return
+  folder: Gains and Returns
+- unique_name: Benchmark YTD Return
+  folder: Gains and Returns
+- unique_name: Outperformance vs S&P 500 YTD
+  folder: Gains and Returns
+relationships:
+- unique_name: Positions to Month End
+  from:
+    dataset: Positions
+    join_columns:
+    - SNAPSHOT_DATE
+  to:
+    dimension: Month End
+    level: Month End Date
+- unique_name: Positions to Account
+  from:
+    dataset: Positions
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: Positions to Security
+  from:
+    dataset: Positions
+    join_columns:
+    - SECURITY_ID
+  to:
+    dimension: Security
+    level: Security
+- unique_name: Account Performance to Month End
+  from:
+    dataset: Account Performance
+    join_columns:
+    - SNAPSHOT_DATE
+  to:
+    dimension: Month End
+    level: Month End Date
+- unique_name: Account Performance to Account
+  from:
+    dataset: Account Performance
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: Realized Gains to Month End
+  from:
+    dataset: Realized Gains
+    join_columns:
+    - SELL_MONTH_END
+  to:
+    dimension: Month End
+    level: Month End Date
+- unique_name: Realized Gains to Account
+  from:
+    dataset: Realized Gains
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: Realized Gains to Security
+  from:
+    dataset: Realized Gains
+    join_columns:
+    - SECURITY_ID
+  to:
+    dimension: Security
+    level: Security
+- unique_name: Benchmark Returns to Month End
+  from:
+    dataset: Benchmark Returns
+    join_columns:
+    - SNAPSHOT_DATE
+  to:
+    dimension: Month End
+    level: Month End Date
+- unique_name: Target Allocations to Account
+  from:
+    dataset: Account Target Allocations
+    join_columns:
+    - ACCOUNT_ID
+  to:
+    dimension: Account
+    level: Account
+- unique_name: Target Allocations to Asset Class
+  from:
+    dataset: Account Target Allocations
+    join_columns:
+    - ASSET_CLASS
+  to:
+    dimension: Asset Class
+    level: Asset Class
+ai_context:
+- source_type: catalog
+  source: Snowflake Horizon - SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ (comments, PK/FK, SE_DEMO_LIBRARY.METADATA glossary)
+- notes:
+  - One combined model with four facts (positions, account performance, realized gains, benchmark returns) plus
+    a target-allocation fact derived from DIM_MODEL_TARGET x DIM_ACCOUNT.
+  - 'Balances (AUM, cost basis, unrealized gain, quantity, position count, ending value, index level) are semi-additive
+    last on Month End; beginning value is first. Per Horizon comments: never sum across months.'
+  - 'Glossary formula terms published as metric_calcs: QoQ AUM Change (USD and %), Asset Allocation, Cash Share,
+    Allocation Drift, Realized Gain YTD, Year-to-Date Return, Outperformance vs Benchmark.'
+  - Sector Exposure is AUM grouped by Sector within Equity; no separate calc. Net New Assets is not measurable (NET_FLOW
+    always 0) and is documented on Net Flow.
+  - Numeric facts quoted in Horizon comments (row counts, $19.8B book, segment averages) were left out of descriptions
+    to avoid unpinned numbers; AUM at 2026-06-30 = 19,808,138,318.19 verified by SQL.
+  - 'MDX calcs not engine-validated: the model is not deployed in this run (sml-create-metric R8 runs at deploy).'
+- role: check
+  max_orphans:
+    Positions.SNAPSHOT_DATE: 0
+    Positions.ACCOUNT_ID: 0
+    Positions.SECURITY_ID: 0
+    Realized Gains.SELL_MONTH_END: 0
+    Account Performance.ACCOUNT_ID: 0
+    Account Target Allocations.ASSET_CLASS: 0

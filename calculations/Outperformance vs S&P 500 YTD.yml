@@ -1,0 +1,11 @@
+unique_name: Outperformance vs S&P 500 YTD
+object_type: metric_calc
+label: Outperformance vs S&P 500 YTD
+description: 'Outperformance vs benchmark (excess return, alpha) in percentage points: Account YTD Return minus
+  the S&P 500 YTD return over the same months; positive means the account beat the S&P 500.'
+expression: '[Measures].[Account YTD Return] - ([Benchmark].[Benchmark Hierarchy].[Benchmark].&[BM_SPX], [Measures].[Benchmark
+  YTD Return])'
+format: '#,##0.00'
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Outperformance vs Benchmark

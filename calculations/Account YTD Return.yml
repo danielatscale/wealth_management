@@ -1,0 +1,13 @@
+unique_name: Account YTD Return
+object_type: metric_calc
+label: Account YTD Return
+description: 'Account year-to-date return (YTD return) in percent: monthly account returns compounded since 1 January,
+  product of (1 + monthly return / 100) minus 1, through the current month end. Not Benchmark YTD Return or the
+  simple Account Monthly Return.'
+expression: (Exp(Sum(Descendants(PeriodsToDate([Month End].[Month End Hierarchy].[Year], [Month End].[Month End
+  Hierarchy].CurrentMember), [Month End].[Month End Hierarchy].[Month End Date]), Log(1 + [Measures].[Account Monthly
+  Return] / 100))) - 1) * 100
+format: '#,##0.00'
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Year-to-Date Return

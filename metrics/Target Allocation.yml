@@ -1,0 +1,16 @@
+unique_name: Target Allocation
+object_type: metric
+label: Target Allocation
+description: Target allocation (target weight) of an asset class in the account risk model, in percent (85 = 85%);
+  targets sum to 100 per model. Exact per account and asset class, an average across accounts; does not change over
+  time. Not Asset Allocation (actual).
+dataset: Account Target Allocations
+column: TARGET_PCT
+calculation_method: average
+format: '#,##0.0'
+unrelated_dimensions_handling: repeat
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET.TARGET_PCT
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Target Allocation

@@ -1,0 +1,13 @@
+unique_name: AUM QoQ Change
+object_type: metric_calc
+label: AUM QoQ Change
+description: 'Quarter-over-quarter AUM change in USD (QoQ delta): AUM at the quarter end minus AUM at the previous
+  quarter end, comparing two month-end balances, not a sum of months; query at Quarter level. Not AUM QoQ Change
+  Pct.'
+expression: IIF(IsEmpty((ParallelPeriod([Month End].[Month End Hierarchy].[Quarter], 1, [Month End].[Month End Hierarchy].CurrentMember),
+  [Measures].[AUM])), NULL, [Measures].[AUM] - (ParallelPeriod([Month End].[Month End Hierarchy].[Quarter], 1, [Month
+  End].[Month End Hierarchy].CurrentMember), [Measures].[AUM]))
+format: $#,##0
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Quarter-over-Quarter AUM Change

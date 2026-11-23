@@ -1,0 +1,17 @@
+unique_name: Realized Gain
+object_type: metric
+label: Realized Gain
+description: Realized gain or loss locked in by selling (proceeds minus cost basis of lots sold), USD; additive
+  over time, negative is a realized loss (e.g. tax-loss harvesting). Reported on the month end of the sell date;
+  not Unrealized Gain on open positions.
+dataset: Realized Gains
+column: REALIZED_GAIN
+calculation_method: sum
+format: $#,##0
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN.REALIZED_GAIN
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Realized Gain
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Tax-Loss Harvesting

@@ -1,0 +1,12 @@
+unique_name: Cash Share
+object_type: metric_calc
+label: Cash Share
+description: 'Cash share (cash allocation, cash sweep share) of client assets in percent: AUM in the Cash asset
+  class / total AUM x 100 at a month end. Cash-only shortcut of Asset Allocation, no Asset Class filter needed.'
+expression: IIF(IsEmpty(([Asset Class].[Asset Class Hierarchy].[All], [Measures].[AUM])) OR ([Asset Class].[Asset
+  Class Hierarchy].[All], [Measures].[AUM]) = 0, NULL, ([Asset Class].[Asset Class Hierarchy].[Asset Class].&[Cash],
+  [Measures].[AUM]) / ([Asset Class].[Asset Class Hierarchy].[All], [Measures].[AUM]) * 100)
+format: '#,##0.00'
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Cash Share

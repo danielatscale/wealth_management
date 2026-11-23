@@ -1,0 +1,26 @@
+unique_name: Sell Date
+object_type: dimension
+label: Sell Date
+type: standard
+is_degenerate: true
+level_attributes:
+- unique_name: Sell Date
+  label: Sell Date
+  description: Trade date of a sale (sell date) of a realized lot; not always a month end, e.g. the tax-loss harvest
+    on 2025-12-18. Not Month End Date, which is the month end the lot is reported in.
+  dataset: Realized Gains
+  key_columns:
+  - SELL_DATE
+  name_column: SELL_DATE
+  ai_context:
+  - source_type: catalog
+    source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN.SELL_DATE
+  - source_type: catalog
+    source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Tax-Loss Harvesting
+hierarchies:
+- unique_name: Sell Date Hierarchy
+  label: Sell Date
+  filter_empty: 'yes'
+  folder: Sell Date
+  levels:
+  - unique_name: Sell Date

@@ -1,0 +1,14 @@
+unique_name: AUM QoQ Change Pct
+object_type: metric_calc
+label: AUM QoQ Change Pct
+description: 'Quarter-over-quarter AUM change in percent (QoQ growth %): (AUM at quarter end minus AUM at previous
+  quarter end) / previous quarter-end AUM x 100; query at Quarter level. Not the USD AUM QoQ Change.'
+expression: IIF(IsEmpty((ParallelPeriod([Month End].[Month End Hierarchy].[Quarter], 1, [Month End].[Month End Hierarchy].CurrentMember),
+  [Measures].[AUM])) OR (ParallelPeriod([Month End].[Month End Hierarchy].[Quarter], 1, [Month End].[Month End Hierarchy].CurrentMember),
+  [Measures].[AUM]) = 0, NULL, ([Measures].[AUM] - (ParallelPeriod([Month End].[Month End Hierarchy].[Quarter],
+  1, [Month End].[Month End Hierarchy].CurrentMember), [Measures].[AUM])) / (ParallelPeriod([Month End].[Month End
+  Hierarchy].[Quarter], 1, [Month End].[Month End Hierarchy].CurrentMember), [Measures].[AUM]) * 100)
+format: '#,##0.00'
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Quarter-over-Quarter AUM Change

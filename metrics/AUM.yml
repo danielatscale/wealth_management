@@ -1,0 +1,23 @@
+unique_name: AUM
+object_type: metric
+label: AUM
+description: 'Assets under management (AUM), total market value of client holdings in USD at a month end (sum of
+  position market values); rolls up account > household > advisor. A balance: for a quarter or year it takes the
+  last month end, never the sum of months. Not Account Ending Value, the alternative AUM from the performance table.'
+dataset: Positions
+column: MARKET_VALUE
+calculation_method: sum
+format: $#,##0
+semi_additive:
+  position: last
+  relationships:
+  - Positions to Month End
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT.MARKET_VALUE
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Assets Under Management (AUM)
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Market Value
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Sector Exposure

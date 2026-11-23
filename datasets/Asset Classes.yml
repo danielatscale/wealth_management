@@ -1,0 +1,19 @@
+unique_name: Asset Classes
+object_type: dataset
+label: Asset Classes
+connection_id: Snowflake Partner
+sql: SELECT DISTINCT ASSET_CLASS FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET
+columns:
+- name: ASSET_CLASS
+  data_type: string
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET.ASSET_CLASS
+- role: check
+  unique:
+  - ASSET_CLASS
+  not_null:
+  - ASSET_CLASS
+- notes:
+  - Distinct asset classes from DIM_MODEL_TARGET; the conformed Asset Class dimension shared by Securities (positions,
+    realized lots) and target allocations.

@@ -1,0 +1,16 @@
+unique_name: Account Beginning Value
+object_type: metric
+label: Account Beginning Value
+description: Account beginning value (start-of-month account value), USD; a balance taking the first month in a
+  period. Not Account Ending Value.
+dataset: Account Performance
+column: BEGINNING_VALUE
+calculation_method: sum
+format: $#,##0
+semi_additive:
+  position: first
+  relationships:
+  - Account Performance to Month End
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_ACCOUNT_PERFORMANCE.BEGINNING_VALUE

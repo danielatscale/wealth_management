@@ -1,0 +1,13 @@
+unique_name: Asset Allocation
+object_type: metric_calc
+label: Asset Allocation
+description: 'Asset allocation (actual allocation, weight) in percent: AUM in the current asset class / AUM across
+  all asset classes x 100, at a month end, for the account, household, advisor or book in context; group by Asset
+  Class. Not Target Allocation.'
+expression: IIF(IsEmpty(([Asset Class].[Asset Class Hierarchy].[All], [Measures].[AUM])) OR ([Asset Class].[Asset
+  Class Hierarchy].[All], [Measures].[AUM]) = 0, NULL, [Measures].[AUM] / ([Asset Class].[Asset Class Hierarchy].[All],
+  [Measures].[AUM]) * 100)
+format: '#,##0.00'
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Asset Allocation

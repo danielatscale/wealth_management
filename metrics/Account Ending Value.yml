@@ -1,0 +1,18 @@
+unique_name: Account Ending Value
+object_type: metric
+label: Account Ending Value
+description: Account ending value (end-of-month account value), USD, from monthly performance; an alternative AUM
+  source to AUM (position market value). A balance taking the last month end in a period.
+dataset: Account Performance
+column: ENDING_VALUE
+calculation_method: sum
+format: $#,##0
+semi_additive:
+  position: last
+  relationships:
+  - Account Performance to Month End
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_ACCOUNT_PERFORMANCE.ENDING_VALUE
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Assets Under Management (AUM)

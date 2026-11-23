@@ -1,0 +1,44 @@
+unique_name: Realized Gains
+object_type: dataset
+label: Realized Gains
+connection_id: Snowflake Partner
+table: FACT_REALIZED_GAIN
+columns:
+- name: REALIZED_ID
+  data_type: decimal
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: SECURITY_ID
+  data_type: decimal
+- name: SELL_DATE
+  data_type: date
+- name: QUANTITY
+  data_type: decimal
+- name: PROCEEDS
+  data_type: decimal
+- name: COST_BASIS
+  data_type: decimal
+- name: REALIZED_GAIN
+  data_type: decimal
+- name: TERM
+  data_type: string
+- name: SELL_MONTH_END
+  data_type: date
+  sql: LAST_DAY(SELL_DATE)
+- name: LOT_COUNT
+  data_type: int
+  sql: '1'
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN
+- role: check
+  unique:
+  - REALIZED_ID
+  not_null:
+  - REALIZED_ID
+  - ACCOUNT_ID
+  - SECURITY_ID
+  - SELL_DATE
+- notes:
+  - SELL_MONTH_END = LAST_DAY(SELL_DATE), per the Horizon SELL_DATE comment, joins the monthly calendar; verified
+    0 orphans.

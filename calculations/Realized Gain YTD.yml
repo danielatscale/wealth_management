@@ -1,0 +1,11 @@
+unique_name: Realized Gain YTD
+object_type: metric_calc
+label: Realized Gain YTD
+description: 'Realized gains year to date (YTD realized gain/loss), USD: Realized Gain summed over lots sold since
+  1 January through the current month end on the Month End calendar. Not Unrealized Gain, which is a month-end balance.'
+expression: Aggregate(PeriodsToDate([Month End].[Month End Hierarchy].[Year], [Month End].[Month End Hierarchy].CurrentMember),
+  [Measures].[Realized Gain])
+format: $#,##0
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Realized Gain

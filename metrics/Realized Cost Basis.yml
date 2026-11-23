@@ -1,0 +1,13 @@
+unique_name: Realized Cost Basis
+object_type: metric
+label: Realized Cost Basis
+description: Cost basis of the units sold (realized lots), USD; additive. Not Cost Basis of positions still held.
+dataset: Realized Gains
+column: COST_BASIS
+calculation_method: sum
+format: $#,##0
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_REALIZED_GAIN.COST_BASIS
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Cost Basis

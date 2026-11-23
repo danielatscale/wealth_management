@@ -1,0 +1,16 @@
+unique_name: Position Count
+object_type: metric
+label: Position Count
+description: Number of positions (holdings, account-security pairs) at a month end; takes the last month end in
+  a period rather than adding months. Not Lot Count of realized sales.
+dataset: Positions
+column: POSITION_COUNT
+calculation_method: sum
+format: '#,##0'
+semi_additive:
+  position: last
+  relationships:
+  - Positions to Month End
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_POSITION_SNAPSHOT

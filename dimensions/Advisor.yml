@@ -1,0 +1,66 @@
+unique_name: Advisor
+object_type: dimension
+label: Advisor
+type: standard
+level_attributes:
+- unique_name: Advisor
+  label: Advisor
+  description: 'Financial advisor who owns the client book (advisor book: all households and accounts the advisor
+    manages); top of the advisor > household > account rollup. Advisor names are not unique, so group by the advisor
+    key and show the name, not the household-level Household attribute.'
+  dataset: Advisors
+  key_columns:
+  - ADVISOR_ID
+  name_column: ADVISOR_NAME
+  sort_column: ADVISOR_NAME
+  is_unique_key: true
+  ai_context:
+  - source_type: catalog
+    source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.ADVISOR_NAME
+  - source_type: catalog
+    source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Advisor Book
+hierarchies:
+- unique_name: Advisor Hierarchy
+  label: Advisor
+  filter_empty: 'yes'
+  folder: Advisor
+  levels:
+  - unique_name: Advisor
+    secondary_attributes:
+    - unique_name: Advisor Office Region
+      label: Advisor Office Region
+      description: 'Region of the advisor office: Midwest, Northeast, Southeast, Southwest, West; not Household
+        Region (where the client lives) or Issuer Region (of a security).'
+      dataset: Advisors
+      name_column: OFFICE_REGION
+      key_columns:
+      - OFFICE_REGION
+      ai_context:
+      - source_type: catalog
+        source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.OFFICE_REGION
+    - unique_name: Advisor Tenure Years
+      label: Advisor Tenure Years
+      description: Advisor tenure, years the advisor has been with the firm (2 to 27); an advisor attribute, not
+        account or household age.
+      dataset: Advisors
+      name_column: TENURE_YEARS
+      key_columns:
+      - TENURE_YEARS
+      ai_context:
+      - source_type: catalog
+        source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.TENURE_YEARS
+    - unique_name: Advisor Is Senior
+      label: Advisor Is Senior
+      description: Senior advisor flag, TRUE for senior advisors and FALSE otherwise.
+      dataset: Advisors
+      name_column: IS_SENIOR
+      key_columns:
+      - IS_SENIOR
+      ai_context:
+      - source_type: catalog
+        source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR.IS_SENIOR
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ADVISOR
+- notes:
+  - Reached from Account through Household by embedded relationships (DIM_HOUSEHOLD.ADVISOR_ID FK).

@@ -1,0 +1,14 @@
+unique_name: Benchmark YTD Return
+object_type: metric_calc
+label: Benchmark YTD Return
+description: 'Benchmark year-to-date return (YTD index return) in percent: monthly benchmark returns compounded
+  since 1 January through the current month end; filter to one Benchmark. Not Account YTD Return.'
+expression: (Exp(Sum(Descendants(PeriodsToDate([Month End].[Month End Hierarchy].[Year], [Month End].[Month End
+  Hierarchy].CurrentMember), [Month End].[Month End Hierarchy].[Month End Date]), Log(1 + [Measures].[Benchmark
+  Monthly Return] / 100))) - 1) * 100
+format: '#,##0.00'
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Year-to-Date Return
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Benchmark

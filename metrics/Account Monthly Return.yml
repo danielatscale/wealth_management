@@ -1,0 +1,16 @@
+unique_name: Account Monthly Return
+object_type: metric
+label: Account Monthly Return
+description: Account monthly return, investment return over one month in percent (e.g. -2.13 = -2.13%), excluding
+  flows; averaged across accounts and months it is the typical month, not a period return (use Account YTD Return).
+  Not Benchmark Monthly Return.
+dataset: Account Performance
+column: MONTHLY_RETURN
+calculation_method: average
+format: '#,##0.00'
+unrelated_dimensions_handling: repeat
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.FACT_ACCOUNT_PERFORMANCE.MONTHLY_RETURN
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Monthly Return

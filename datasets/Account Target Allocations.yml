@@ -1,0 +1,29 @@
+unique_name: Account Target Allocations
+object_type: dataset
+label: Account Target Allocations
+connection_id: Snowflake Partner
+sql: SELECT a.ACCOUNT_ID, t.MODEL, t.ASSET_CLASS, t.TARGET_PCT FROM SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_ACCOUNT
+  a JOIN SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET t ON t.MODEL = a.RISK_MODEL
+columns:
+- name: ACCOUNT_ID
+  data_type: decimal
+- name: MODEL
+  data_type: string
+- name: ASSET_CLASS
+  data_type: string
+- name: TARGET_PCT
+  data_type: double
+ai_context:
+- source_type: catalog
+  source: horizon:SE_DEMO_LIBRARY.WEALTH_PORTFOLIO_NLQ.DIM_MODEL_TARGET
+- role: check
+  unique:
+  - ACCOUNT_ID
+  - ASSET_CLASS
+  not_null:
+  - ACCOUNT_ID
+  - ASSET_CLASS
+  - TARGET_PCT
+- notes:
+  - DIM_MODEL_TARGET expanded to one row per account and asset class through DIM_ACCOUNT.RISK_MODEL = DIM_MODEL_TARGET.MODEL
+    (Horizon comments on both columns); verified every account risk model has targets.

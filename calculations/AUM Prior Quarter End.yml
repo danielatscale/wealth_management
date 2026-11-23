@@ -1,0 +1,11 @@
+unique_name: AUM Prior Quarter End
+object_type: metric_calc
+label: AUM Prior Quarter End
+description: 'AUM at the previous quarter end (prior-quarter AUM, last quarter balance), USD: AUM three months earlier
+  on the Month End calendar; at Quarter level, the prior quarter-end balance. Comparison basis for AUM QoQ Change.'
+expression: (ParallelPeriod([Month End].[Month End Hierarchy].[Quarter], 1, [Month End].[Month End Hierarchy].CurrentMember),
+  [Measures].[AUM])
+format: $#,##0
+ai_context:
+- source_type: catalog
+  source: horizon-glossary:SE_DEMO_LIBRARY.METADATA.GLOSSARY_TERMS/Quarter-over-Quarter AUM Change
